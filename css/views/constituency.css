@@ -1,0 +1,81 @@
+/* ============================================
+   Mera Chunaav — Constituency View (Civic Luxury)
+   Glassmorphic cards, warm chestnut accents
+   ============================================ */
+
+.constituency-hero {
+  position: relative;
+  padding: var(--space-3xl) var(--space-xl);
+  overflow: hidden;
+  border-bottom: 1px solid var(--outline-variant);
+  background: var(--surface-container-lowest);
+}
+
+.constituency-hero__ghost {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-heading);
+  font-size: clamp(60px, 12vw, 140px);
+  font-weight: 800;
+  color: var(--on-surface);
+  opacity: 0.03;
+  white-space: nowrap; user-select: none; pointer-events: none;
+  text-transform: uppercase; filter: blur(1px);
+}
+
+.constituency-hero__tagline {
+  position: relative; z-index: 1;
+  max-width: 600px; font-size: 18px;
+  color: var(--on-surface-variant); line-height: 1.6;
+  font-style: italic; opacity: 0.7;
+}
+
+.constituency-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gutter);
+  margin-bottom: var(--space-2xl);
+}
+@media (min-width: 768px) { .constituency-metrics { grid-template-columns: repeat(4, 1fr); } }
+
+.turnout-chart { margin-bottom: var(--space-2xl); }
+.turnout-chart__title { font-weight: 600; font-size: var(--text-small); color: var(--text-muted); margin-bottom: var(--space-lg); text-transform: uppercase; letter-spacing: 0.08em; }
+.turnout-chart__svg { width: 100%; height: 200px; overflow: visible; }
+.turnout-chart__area { fill: rgba(163,106,62,0.06); }
+.turnout-chart__line { fill: none; stroke: var(--primary-container); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.turnout-chart__line--animated { stroke-dasharray: var(--line-length); stroke-dashoffset: var(--line-length); animation: drawLine 1.5s var(--ease-smooth) 0.3s forwards; }
+.turnout-chart__dot { fill: var(--primary-container); stroke: var(--surface-container-lowest); stroke-width: 3; cursor: pointer; transition: r 0.2s ease-out; }
+.turnout-chart__dot:hover { r: 7; }
+.turnout-chart__grid-line { stroke: var(--outline-variant); stroke-width: 1; }
+.turnout-chart__label { fill: var(--text-muted); font-family: var(--font-mono); font-size: 12px; }
+.turnout-chart__tooltip { position: absolute; background: var(--surface-container-lowest); border: 1px solid var(--outline-variant); border-radius: var(--radius-sm); padding: var(--space-sm) var(--space-md); pointer-events: none; z-index: 10; opacity: 0; transition: opacity 0.15s ease-out; box-shadow: var(--shadow-md); }
+.turnout-chart__tooltip.visible { opacity: 1; }
+.turnout-chart__tooltip-year { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
+.turnout-chart__tooltip-value { font-family: var(--font-mono); font-size: 18px; font-weight: 700; color: var(--on-surface); }
+
+.candidates-section { margin-bottom: var(--space-2xl); }
+.candidates-scroll { display: flex; gap: var(--space-md); overflow-x: auto; padding: var(--space-md) var(--space-xs); scrollbar-width: none; cursor: grab; }
+.candidates-scroll::-webkit-scrollbar { display: none; }
+.candidates-scroll:active { cursor: grabbing; }
+
+.flip-card__back-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+.flip-card__back-value { font-family: var(--font-mono); font-size: 15px; color: var(--on-surface); }
+.flip-card__back-row { display: flex; justify-content: space-between; align-items: center; }
+.flip-card__criminal { color: var(--error); }
+
+.map-section { margin-bottom: var(--space-2xl); position: relative; }
+.map-container { width: 100%; height: 320px; border-radius: var(--radius-xl); overflow: hidden; border: 1px solid var(--outline-variant); background: var(--surface-container); }
+.map-overlay {
+  position: absolute; bottom: var(--space-md); left: var(--space-md);
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-lg);
+  max-width: 280px;
+  box-shadow: var(--shadow-lg);
+}
+.map-overlay__name { font-weight: 600; font-size: 14px; color: var(--on-surface); margin-bottom: var(--space-xs); }
+.map-overlay__address { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+.map-overlay__distance { font-family: var(--font-mono); font-size: 13px; color: var(--primary-container); margin-top: var(--space-sm); font-weight: 600; }

@@ -1,0 +1,63 @@
+/* ============================================
+   Mera Chunaav — AI Guide View (Civic Luxury)
+   Glassmorphic chat, warm Stitch palette
+   ============================================ */
+
+.ai-guide {
+  display: flex; flex-direction: column;
+  height: calc(100vh - var(--topnav-height));
+  position: relative;
+}
+
+.ai-guide__topics { display: flex; flex-direction: column; gap: var(--space-sm); }
+.ai-guide__topics-title { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--space-sm); }
+
+.chat-area {
+  flex: 1; overflow-y: auto; padding: var(--space-xl);
+  display: flex; flex-direction: column; gap: var(--space-md);
+  position: relative; background: var(--surface);
+  background-image: radial-gradient(circle, rgba(131,80,38,0.02) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.chat-area__welcome { text-align: center; padding: var(--space-3xl) var(--space-xl); color: var(--text-muted); }
+.chat-area__welcome-icon { font-size: 48px; margin-bottom: var(--space-md); opacity: 0.5; }
+.chat-area__welcome-title { font-family: var(--font-heading); font-size: 24px; font-weight: 600; color: var(--on-surface); margin-bottom: var(--space-sm); }
+.chat-area__welcome-text { font-size: 15px; max-width: 400px; margin: 0 auto; line-height: 1.6; }
+
+.chat-input-bar {
+  padding: var(--space-md) var(--space-xl);
+  border-top: 1px solid var(--outline-variant);
+  background: var(--surface-container-lowest);
+  display: flex; align-items: flex-end; gap: var(--space-sm);
+  position: relative;
+}
+
+.chat-input-bar__wrapper { flex: 1; position: relative; }
+.chat-input-bar__actions { display: flex; gap: var(--space-xs); align-items: center; position: absolute; right: var(--space-md); bottom: 14px; }
+
+.chat-input-bar .btn--icon { width: 36px; height: 36px; font-size: 16px; background: var(--surface-container); border-radius: 50%; transition: all var(--duration-micro) ease-out; }
+.chat-input-bar .btn--icon:hover { background: rgba(163,106,62,0.1); color: var(--primary-container); }
+
+.chat-send-btn {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--primary-container); color: var(--on-primary);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; cursor: pointer;
+  transition: all var(--duration-micro) ease-out;
+  flex-shrink: 0; border: none;
+  box-shadow: var(--shadow-sm);
+}
+.chat-send-btn:hover { transform: scale(1.08); box-shadow: 0 4px 20px rgba(163,106,62,0.3); }
+.chat-send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+.chat-bubble--ai.shimmer-sweep::after {
+  content: ''; position: absolute; inset: 0; border-radius: inherit;
+  background: linear-gradient(90deg, transparent 0%, rgba(131,80,38,0.03) 50%, transparent 100%);
+  background-size: 200% 100%; animation: shimmer 1s ease-in-out;
+}
+
+@media (max-width: 767px) {
+  .ai-guide__topics-panel { display: none; }
+  .chat-input-bar { padding: var(--space-sm) var(--space-md); }
+}

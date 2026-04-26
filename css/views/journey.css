@@ -1,0 +1,66 @@
+/* ============================================
+   Mera Chunaav — Journey (Civic Luxury)
+   Timeline with warm golden accents
+   ============================================ */
+
+.journey { padding: var(--space-3xl) var(--space-xl); }
+.journey__title { text-align: center; margin-bottom: var(--space-3xl); }
+.journey__subtitle { color: var(--text-muted); font-size: 16px; margin-top: var(--space-sm); font-weight: 400; line-height: 1.6; }
+
+.timeline { position: relative; max-width: 780px; margin: 0 auto; padding: var(--space-xl) 0; }
+.timeline__line { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; transform: translateX(-50%); }
+.timeline__line-svg { position: absolute; left: 0; top: 0; width: 2px; height: 100%; }
+.timeline__line-path { stroke: var(--primary-container); stroke-width: 2; fill: none; stroke-linecap: round; }
+.timeline__line-path--animated { stroke-dasharray: var(--line-length); stroke-dashoffset: var(--line-length); animation: drawLine 1.2s var(--ease-smooth) forwards; }
+.timeline__line-bg { position: absolute; left: 0; top: 0; width: 2px; height: 100%; background: var(--outline-variant); }
+
+.timeline__item { position: relative; display: flex; align-items: flex-start; margin-bottom: var(--space-3xl); }
+.timeline__item:last-child { margin-bottom: 0; }
+.timeline__item--left  { flex-direction: row; padding-right: calc(50% + 40px); }
+.timeline__item--right { flex-direction: row-reverse; padding-left: calc(50% + 40px); }
+
+.timeline__node {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--surface); border: 2px solid var(--primary-container);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono); font-size: 16px; font-weight: 700;
+  color: var(--primary-container); z-index: 2;
+  transition: all var(--duration-micro) ease-out;
+}
+.timeline__node--active { background: var(--primary-container); color: var(--on-primary); animation: glowPulse 2s ease-in-out infinite; }
+.timeline__node--completed { background: var(--success); border-color: var(--success); color: var(--on-primary); }
+
+.timeline__card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl); padding: var(--space-xl);
+  width: 100%; max-width: 340px; cursor: pointer;
+  transition: all var(--duration-micro) ease-out; position: relative;
+  box-shadow: var(--shadow-sm);
+}
+.timeline__card:hover { border-color: rgba(163,106,62,0.2); transform: scale(1.02); box-shadow: var(--shadow-md); }
+.timeline__card-phase { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary-container); margin-bottom: var(--space-sm); }
+.timeline__card-title { font-family: var(--font-heading); font-size: 20px; font-weight: 600; color: var(--on-surface); margin-bottom: var(--space-sm); }
+.timeline__card-duration { display: inline-flex; align-items: center; gap: var(--space-xs); padding: 4px 12px; background: rgba(163,106,62,0.08); color: var(--primary); font-family: var(--font-mono); font-size: 12px; font-weight: 500; border-radius: var(--radius-pill); margin-bottom: var(--space-md); }
+.timeline__card-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+.timeline__card-status { margin-top: var(--space-md); }
+.timeline__card-details { max-height: 0; overflow: hidden; transition: max-height 400ms var(--ease-smooth); }
+.timeline__card.expanded .timeline__card-details { max-height: 200px; }
+.timeline__card-details-inner { padding-top: var(--space-md); border-top: 1px solid var(--outline-variant); margin-top: var(--space-md); }
+.timeline__card-ai-link { display: inline-flex; align-items: center; gap: var(--space-xs); color: var(--primary-container); font-size: 13px; font-weight: 600; margin-top: var(--space-sm); cursor: pointer; transition: transform var(--duration-micro) ease-out; }
+.timeline__card-ai-link:hover { transform: translateX(4px); }
+
+.timeline__connector { position: absolute; top: 24px; width: 40px; height: 2px; background: var(--outline-variant); }
+.timeline__item--left .timeline__connector  { right: -40px; }
+.timeline__item--right .timeline__connector { left: -40px; }
+
+@media (max-width: 767px) {
+  .timeline__line { left: 24px; }
+  .timeline__node { left: 24px; width: 40px; height: 40px; font-size: 14px; }
+  .timeline__item--left, .timeline__item--right { flex-direction: row; padding-left: 72px; padding-right: 0; }
+  .timeline__card { max-width: 100%; }
+  .timeline__connector { display: none; }
+}

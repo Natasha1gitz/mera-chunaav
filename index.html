@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mera Chunaav — Your personalized election education assistant. Discover your constituency, candidates, and civic rights.">
+  <meta name="theme-color" content="#fcf9f4">
+  <title>Mera Chunaav — Your Vote, Your Story</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/views/home.css">
+  <link rel="stylesheet" href="css/views/onboarding.css">
+  <link rel="stylesheet" href="css/views/constituency.css">
+  <link rel="stylesheet" href="css/views/ai-guide.css">
+  <link rel="stylesheet" href="css/views/journey.css">
+  <link rel="stylesheet" href="css/views/quiz.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- ===== TOP NAVIGATION ===== -->
+    <nav class="top-nav" id="top-nav" role="navigation" aria-label="Main navigation">
+      <a class="top-nav__brand" data-nav="home" href="#">Mera<span>Chunaav</span></a>
+
+      <div class="top-nav__links" id="nav-links" style="display:none">
+        <a class="top-nav__link" data-nav="home" href="#" aria-label="Home">
+          <span class="top-nav__link-icon">⌂</span>
+          <span>Home</span>
+        </a>
+        <a class="top-nav__link" data-nav="dashboard" href="#" aria-label="Dashboard">
+          <span class="top-nav__link-icon">📊</span>
+          <span>Dashboard</span>
+        </a>
+        <a class="top-nav__link" data-nav="constituency" href="#" aria-label="Constituency">
+          <span class="top-nav__link-icon">🏛️</span>
+          <span>Constituency</span>
+        </a>
+        <a class="top-nav__link" data-nav="ai-guide" href="#" aria-label="AI Guide">
+          <span class="top-nav__link-icon">💬</span>
+          <span>AI Guide</span>
+        </a>
+        <a class="top-nav__link" data-nav="journey" href="#" aria-label="Journey">
+          <span class="top-nav__link-icon">🗺️</span>
+          <span>Journey</span>
+        </a>
+        <a class="top-nav__link" data-nav="quiz" href="#" aria-label="Quiz">
+          <span class="top-nav__link-icon">🎯</span>
+          <span>Quiz</span>
+        </a>
+        <div class="top-nav__divider"></div>
+      </div>
+
+      <div class="top-nav__lang">
+        <button class="lang-btn active" data-lang="en" aria-label="English">EN</button>
+        <button class="lang-btn" data-lang="hi" aria-label="Hindi">हि</button>
+        <button class="lang-btn" data-lang="ta" aria-label="Tamil">த</button>
+        <button class="lang-btn" data-lang="bn" aria-label="Bengali">বা</button>
+      </div>
+    </nav>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content home-active" id="main-content">
+
+      <!-- ===== VIEW: HOME ===== -->
+      <section id="view-home" class="view active home" aria-label="Home">
+
+        <!-- Scroll animation area (light background) -->
+        <div class="home__canvas-section">
+          <div class="home__canvas-wrap">
+            <canvas id="home-canvas" class="home__canvas"></canvas>
+
+            <div class="home__text-overlay">
+              <h2 class="home__stage-title visible" data-stage="0">Bharat</h2>
+              <p class="home__stage-subtitle visible" data-stage="0">A nation of 1.4 billion voices</p>
+              <h2 class="home__stage-title" data-stage="1">You</h2>
+              <p class="home__stage-subtitle" data-stage="1">Every citizen holds the power to shape tomorrow</p>
+              <h2 class="home__stage-title" data-stage="2">Your Choice</h2>
+              <p class="home__stage-subtitle" data-stage="2">One vote. One moment. One decision.</p>
+              <h2 class="home__stage-title" data-stage="3">The Ink Mark</h2>
+              <p class="home__stage-subtitle" data-stage="3">The ink on your finger is your mark on history</p>
+              <h2 class="home__stage-title" data-stage="4">Your Vote Shapes the Nation</h2>
+              <p class="home__stage-subtitle" data-stage="4">From one citizen to the destiny of an entire nation</p>
+            </div>
+
+            <div class="home__cta">
+              <button class="home__cta-btn" id="home-scroll-btn">Begin Your Journey ↓</button>
+            </div>
+
+            <div class="home__scroll-hint">
+              <span>Scroll</span>
+              <div class="home__scroll-arrow"></div>
+            </div>
+          </div>
+
+          <div class="home__progress">
+            <div class="home__progress-dot active"></div>
+            <div class="home__progress-dot"></div>
+            <div class="home__progress-dot"></div>
+            <div class="home__progress-dot"></div>
+            <div class="home__progress-dot"></div>
+          </div>
+        </div>
+
+        <!-- Light pincode section (below scroll animation) -->
+        <div class="home__pincode-section" id="pincode-section">
+          <div id="pincode-step">
+            <h2 class="home__pincode-title">Discover Your Constituency</h2>
+            <p class="home__pincode-subtitle">Enter your 6-digit pincode to unlock personalized election insights</p>
+            <div class="home__pincode-input-wrap">
+              <div class="home__pincode-glow"></div>
+              <input
+                type="text"
+                id="pincode-input"
+                class="input-pill"
+                placeholder="e.g. 226001"
+                maxlength="6"
+                inputmode="numeric"
+                pattern="[0-9]*"
+                autocomplete="postal-code"
+                aria-label="Enter your 6-digit pincode"
+              >
+            </div>
+          </div>
+
+          <!-- Inline constituency reveal -->
+          <div class="home__reveal" id="home-reveal">
+            <div class="home__reveal-card">
+              <div style="margin-bottom:var(--space-md)">
+                <span class="badge badge--accent" id="reveal-state">State</span>
+              </div>
+              <h2 class="home__reveal-name" id="reveal-name">Your Constituency</h2>
+              <div class="home__reveal-stats" id="reveal-stats">
+                <div class="stat-pill"><span class="text-muted">Voters</span> <span class="stat-pill__value" id="reveal-voters">—</span></div>
+                <div class="stat-pill"><span class="text-muted">Turnout</span> <span class="stat-pill__value" id="reveal-turnout">—</span></div>
+                <div class="stat-pill"><span class="text-muted">Phase</span> <span class="stat-pill__value" id="reveal-phase">—</span></div>
+              </div>
+              <div class="home__reveal-enter">
+                <button class="btn btn--primary btn--pill btn--lg" id="enter-dashboard-btn">
+                  Explore Dashboard →
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== VIEW: DASHBOARD (Feature Hub) ===== -->
+      <section id="view-dashboard" class="view" aria-label="Dashboard">
+        <div class="content-wrapper">
+          <!-- Dashboard Hero -->
+          <div style="text-align:center; margin-bottom:var(--space-3xl);">
+            <span class="badge badge--accent" id="dash-state" style="margin-bottom:var(--space-md);display:inline-block">State</span>
+            <h1 style="font-size:var(--text-section);margin-bottom:var(--space-sm)" id="dash-name">Your Constituency</h1>
+            <p class="text-muted" style="max-width:500px;margin:0 auto">Your personalized election hub — explore data, chat with AI, and test your civic knowledge</p>
+          </div>
+
+          <!-- Feature Cards Grid -->
+          <div class="dashboard-grid">
+            <div class="feature-card" data-nav="constituency" role="button" tabindex="0">
+              <div class="feature-card__icon">🏛️</div>
+              <div class="feature-card__title">Constituency Intelligence</div>
+              <div class="feature-card__desc">Explore voter data, candidates, turnout trends, and your nearest polling booth</div>
+              <div class="feature-card__arrow">→</div>
+            </div>
+            <div class="feature-card" data-nav="ai-guide" role="button" tabindex="0">
+              <div class="feature-card__icon">💬</div>
+              <div class="feature-card__title">AI Civic Guide</div>
+              <div class="feature-card__desc">Ask questions about voting, your constituency, candidates, and election processes</div>
+              <div class="feature-card__arrow">→</div>
+            </div>
+            <div class="feature-card" data-nav="journey" role="button" tabindex="0">
+              <div class="feature-card__icon">🗺️</div>
+              <div class="feature-card__title">Election Journey</div>
+              <div class="feature-card__desc">Follow the complete election timeline from nomination to results day</div>
+              <div class="feature-card__arrow">→</div>
+            </div>
+            <div class="feature-card" data-nav="quiz" role="button" tabindex="0">
+              <div class="feature-card__icon">🎯</div>
+              <div class="feature-card__title">Civic Quiz</div>
+              <div class="feature-card__desc">Test your knowledge of India's democracy and earn your civic score</div>
+              <div class="feature-card__arrow">→</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== VIEW: CONSTITUENCY ===== -->
+      <section id="view-constituency" class="view" aria-label="Constituency Intelligence">
+        <div class="constituency-hero">
+          <div class="constituency-hero__ghost" id="const-hero-ghost" aria-hidden="true"></div>
+          <p class="constituency-hero__tagline" id="const-hero-tagline"></p>
+        </div>
+        <div class="content-wrapper">
+          <div id="metrics-grid" class="constituency-metrics"></div>
+          <div id="turnout-chart" class="turnout-chart reveal"></div>
+          <div class="candidates-section reveal">
+            <div class="section-header">
+              <h3 class="section-header__title">Who contested in your seat</h3>
+              <span class="section-header__count" id="candidates-count">0</span>
+            </div>
+            <div class="candidates-scroll" id="candidates-scroll"></div>
+          </div>
+          <div class="map-section reveal">
+            <div class="section-header"><h3 class="section-header__title">Nearest Polling Booth</h3></div>
+            <div class="map-container" id="map-container"></div>
+            <div class="map-overlay" id="map-overlay"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== VIEW: AI GUIDE ===== -->
+      <section id="view-ai-guide" class="view" aria-label="AI Guide Chat">
+        <div class="split-layout">
+          <div class="split-layout__sidebar ai-guide__topics-panel">
+            <div id="ai-topics" class="ai-guide__topics"></div>
+          </div>
+          <div class="split-layout__main ai-guide">
+            <div class="chat-area" id="chat-messages">
+              <div class="chat-area__welcome">
+                <div class="chat-area__welcome-icon">💬</div>
+                <h3 class="chat-area__welcome-title">Ask Mera Chunaav</h3>
+                <p class="chat-area__welcome-text text-muted">Your AI civic guide — ask about voting, candidates, or your constituency.</p>
+              </div>
+            </div>
+            <div class="chat-input-bar">
+              <div class="chat-input-bar__wrapper">
+                <textarea id="chat-input" class="chat-input" placeholder="Ask about your constituency..." rows="1" aria-label="Type your question"></textarea>
+                <div class="chat-input-bar__actions">
+                  <button class="btn--icon" id="chat-mic" aria-label="Voice input">🎤</button>
+                </div>
+              </div>
+              <button class="chat-send-btn" id="chat-send" aria-label="Send message">➤</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== VIEW: JOURNEY ===== -->
+      <section id="view-journey" class="view" aria-label="Election Journey">
+        <div class="content-narrow journey">
+          <div class="journey__title">
+            <h2>Election Journey</h2>
+            <p class="journey__subtitle">The complete timeline of your constituency's election</p>
+          </div>
+          <div class="timeline" id="timeline-container"></div>
+        </div>
+      </section>
+
+      <!-- ===== VIEW: QUIZ ===== -->
+      <section id="view-quiz" class="view" aria-label="Civic Quiz">
+        <div class="content-centered quiz">
+          <div class="quiz__score-header">
+            <div class="quiz__score-ring">
+              <svg viewBox="0 0 120 120">
+                <circle class="quiz__score-ring-bg" cx="60" cy="60" r="50" />
+                <circle class="quiz__score-ring-progress" id="quiz-score-progress" cx="60" cy="60" r="50" stroke-dasharray="314.16" stroke-dashoffset="314.16" />
+              </svg>
+              <div class="quiz__score-value" id="quiz-score-value">0</div>
+            </div>
+            <span class="badge badge--accent quiz__rank-badge">Civic Score</span>
+          </div>
+          <div id="quiz-question" class="quiz__question-container"></div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ===== BOTTOM NAV (Mobile) ===== -->
+    <nav class="bottom-nav" aria-label="Mobile navigation">
+      <div class="bottom-nav__items">
+        <a class="bottom-nav__item active" data-nav="home" aria-label="Home">
+          <span class="bottom-nav__icon">⌂</span><span>Home</span>
+        </a>
+        <a class="bottom-nav__item" data-nav="dashboard" aria-label="Dashboard">
+          <span class="bottom-nav__icon">📊</span><span>Hub</span>
+        </a>
+        <a class="bottom-nav__item" data-nav="ai-guide" aria-label="AI Guide">
+          <span class="bottom-nav__icon">💬</span><span>Guide</span>
+        </a>
+        <a class="bottom-nav__item" data-nav="journey" aria-label="Journey">
+          <span class="bottom-nav__icon">🗺️</span><span>Journey</span>
+        </a>
+        <a class="bottom-nav__item" data-nav="quiz" aria-label="Quiz">
+          <span class="bottom-nav__icon">🎯</span><span>Quiz</span>
+        </a>
+        <div class="bottom-nav__indicator"></div>
+      </div>
+    </nav>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js"></script>
+  <script src="config.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/views/home.js"></script>
+  <script src="js/views/onboarding.js"></script>
+  <script src="js/views/constituency.js"></script>
+  <script src="js/views/ai-guide.js"></script>
+  <script src="js/views/journey.js"></script>
+  <script src="js/views/quiz.js"></script>
+  <script src="js/gemini.js"></script>
+  <script src="js/tts.js"></script>
+  <script src="js/firebase.js"></script>
+  <script src="js/maps.js"></script>
+  <script src="js/translate.js"></script>
+</body>
+</html>

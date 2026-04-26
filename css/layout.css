@@ -1,0 +1,208 @@
+/* ============================================
+   Mera Chunaav — Layout (Civic Luxury)
+   Floating Glass Nav, Responsive Grid
+   Sourced from Stitch Design System
+   ============================================ */
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ---------- Top Navigation (Floating Glass Header) ---------- */
+.top-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--topnav-height);
+  background: rgba(252, 249, 244, 0.72);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  border-bottom: 1px solid rgba(214, 195, 183, 0.3);
+  z-index: var(--z-nav);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-xl);
+  transition: all var(--duration-micro) ease-out;
+}
+
+.top-nav.scrolled {
+  background: rgba(252, 249, 244, 0.92);
+  box-shadow: var(--shadow-sm);
+}
+
+/* On dark home canvas — invert nav appearance */
+.top-nav.on-dark {
+  background: rgba(28, 28, 25, 0.5);
+  backdrop-filter: blur(24px) saturate(1.2);
+  -webkit-backdrop-filter: blur(24px) saturate(1.2);
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+.top-nav.on-dark .top-nav__brand { color: var(--surface); }
+.top-nav.on-dark .top-nav__link { color: rgba(252, 249, 244, 0.5); }
+.top-nav.on-dark .top-nav__link.active { color: var(--surface); background: rgba(255,255,255,0.08); }
+.top-nav.on-dark .top-nav__link:hover { color: rgba(252, 249, 244, 0.8); }
+.top-nav.on-dark .lang-btn { color: rgba(252, 249, 244, 0.5); }
+.top-nav.on-dark .lang-btn.active { color: var(--gold-light); background: rgba(163,106,62,0.15); }
+.top-nav.on-dark .top-nav__divider { background: rgba(255,255,255,0.1); }
+
+.top-nav__brand {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--on-surface);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--duration-micro) ease-out;
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.top-nav__brand:hover { color: var(--primary-container); }
+.top-nav__brand span { color: var(--primary-container); }
+
+.top-nav__links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-left: auto;
+}
+
+.top-nav__link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 13px;
+  border-radius: var(--radius-md);
+  transition: all var(--duration-micro) ease-out;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
+.top-nav__link:hover { color: var(--on-surface); background: var(--surface-container); }
+.top-nav__link.active { color: var(--primary); background: rgba(163,106,62,0.08); }
+.top-nav__link-icon { font-size: 16px; flex-shrink: 0; }
+
+.top-nav__divider {
+  width: 1px; height: 24px;
+  background: var(--outline-variant);
+  margin: 0 var(--space-sm);
+}
+
+.top-nav__lang {
+  display: flex;
+  gap: 2px;
+  margin-left: var(--space-md);
+}
+
+.lang-btn {
+  padding: 5px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  transition: all var(--duration-micro) ease-out;
+  cursor: pointer;
+}
+.lang-btn:hover { color: var(--on-surface); background: var(--surface-container); }
+.lang-btn.active { color: var(--primary); background: rgba(163,106,62,0.1); }
+
+/* ---------- Main Content ---------- */
+.main-content {
+  flex: 1;
+  margin-top: var(--topnav-height);
+  min-height: calc(100vh - var(--topnav-height));
+}
+.main-content.home-active { margin-top: 0; }
+
+/* ---------- Views ---------- */
+.view {
+  display: none;
+  min-height: calc(100vh - var(--topnav-height));
+  opacity: 0;
+  transition: opacity var(--duration-page) var(--ease-smooth);
+}
+.view.active { display: block; opacity: 1; }
+
+.view--fullscreen {
+  display: none;
+  min-height: 100vh;
+  width: 100%;
+  opacity: 0;
+  transition: opacity var(--duration-page) var(--ease-smooth);
+}
+.view--fullscreen.active { display: flex; align-items: center; justify-content: center; opacity: 1; }
+
+/* ---------- Content Containers (1280px max) ---------- */
+.content-wrapper { max-width: var(--content-max-width); margin: 0 auto; padding: var(--space-3xl) var(--space-2xl); }
+.content-narrow  { max-width: 780px; margin: 0 auto; padding: var(--space-3xl) var(--space-xl); }
+.content-centered { max-width: 640px; margin: 0 auto; padding: var(--space-3xl) var(--space-xl); }
+
+/* ---------- Grids ---------- */
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--gutter); }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gutter); }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gutter); }
+
+/* ---------- Split (AI Guide) ---------- */
+.split-layout { display: grid; grid-template-columns: 240px 1fr; gap: 0; min-height: calc(100vh - var(--topnav-height)); }
+.split-layout__sidebar {
+  background: var(--surface-container-lowest);
+  border-right: 1px solid var(--outline-variant);
+  padding: var(--space-lg);
+  overflow-y: auto;
+}
+.split-layout__main { display: flex; flex-direction: column; min-height: calc(100vh - var(--topnav-height)); }
+
+/* ---------- Bottom Nav (Mobile) ---------- */
+.bottom-nav {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0;
+  height: var(--bottombar-height);
+  background: rgba(252, 249, 244, 0.88);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  border-top: 1px solid rgba(214, 195, 183, 0.3);
+  z-index: var(--z-nav);
+}
+
+.bottom-nav__items { display: flex; align-items: center; justify-content: space-around; height: 100%; position: relative; }
+
+.bottom-nav__item {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: var(--space-sm); color: var(--text-muted); font-size: 10px; font-weight: 600;
+  cursor: pointer; transition: color var(--duration-micro) ease-out;
+  min-width: 48px; min-height: 48px; justify-content: center; text-decoration: none;
+}
+.bottom-nav__item.active { color: var(--primary-container); }
+.bottom-nav__icon { font-size: 20px; }
+
+.bottom-nav__indicator {
+  position: absolute; bottom: 0; left: 0; width: 20%; height: 2.5px;
+  background: var(--primary-container);
+  border-radius: var(--radius-pill) var(--radius-pill) 0 0;
+  transition: left var(--duration-page) var(--ease-smooth);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1023px) {
+  .top-nav__link span { display: none; }
+  .top-nav__link { padding: var(--space-sm); }
+}
+@media (max-width: 767px) {
+  .top-nav__links { display: none; }
+  .top-nav__lang { margin-left: auto; }
+  .main-content { padding-bottom: var(--bottombar-height); }
+  .bottom-nav { display: block; }
+  .content-wrapper, .content-narrow, .content-centered { padding: var(--space-xl) var(--space-md); }
+  .grid-2 { grid-template-columns: 1fr; }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .split-layout { grid-template-columns: 1fr; }
+  .split-layout__sidebar { display: none; }
+}
+@media (max-width: 480px) { .grid-3 { grid-template-columns: 1fr; } }

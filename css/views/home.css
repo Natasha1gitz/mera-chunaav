@@ -1,0 +1,251 @@
+/* ============================================
+   Mera Chunaav — Homepage + Pincode Section
+   Light canvas → Light pincode (Civic Luxury)
+   Two-phase scroll: Person→Finger, Finger→India
+   ============================================ */
+
+.home {
+  position: relative;
+  background: var(--surface);
+}
+
+/* Light canvas area — reserved for scroll animation */
+.home__canvas-section {
+  position: relative;
+  height: 700vh; /* taller = smoother scroll playback for 61 total frames */
+  background: rgb(245, 239, 235); /* exact match image background */
+}
+
+.home__canvas-wrap {
+  position: sticky;
+  top: 0; left: 0;
+  width: 100%; height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+
+.home__canvas { width: 100%; height: 100%; display: block; }
+
+/* Progress dots */
+.home__progress {
+  position: fixed;
+  right: var(--space-xl); top: 50%; transform: translateY(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: var(--space-md);
+  z-index: 10;
+}
+.home__progress-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(131, 80, 38, 0.18);
+  transition: all var(--duration-micro) ease-out;
+}
+.home__progress-dot.active {
+  background: var(--primary);
+  transform: scale(1.5);
+  box-shadow: 0 0 16px rgba(131, 80, 38, 0.35);
+}
+
+/* ===== TEXT OVERLAYS — lower-right corner, dark on light ===== */
+.home__text-overlay {
+  position: absolute;
+  bottom: 8%;
+  right: 5%;
+  left: auto;
+  transform: none;
+  text-align: right;
+  z-index: 5;
+  pointer-events: none;
+  width: 90%;
+  max-width: 500px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  justify-items: end;
+  align-items: end;
+}
+
+.home__stage-title {
+  grid-column: 1;
+  grid-row: 1;
+  font-family: var(--font-heading);
+  font-size: clamp(24px, 4vw, 44px);
+  font-weight: 800;
+  color: var(--on-surface);
+  opacity: 0;
+  transform: translateY(20px) translateX(12px);
+  transition: opacity 700ms var(--ease-smooth), transform 700ms var(--ease-smooth);
+  margin-bottom: var(--space-xs);
+  letter-spacing: -0.03em;
+  text-shadow:
+    0 1px 8px rgba(240, 235, 228, 0.95),
+    0 2px 20px rgba(240, 235, 228, 0.8),
+    0 0px 48px rgba(240, 235, 228, 0.6);
+}
+.home__stage-title.visible {
+  opacity: 1;
+  transform: translateY(0) translateX(0);
+}
+
+.home__stage-subtitle {
+  grid-column: 1;
+  grid-row: 2;
+  font-family: var(--font-body);
+  font-size: clamp(14px, 2.2vw, 18px);
+  font-weight: 500;
+  color: var(--on-surface-variant);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 700ms var(--ease-smooth) 180ms, transform 700ms var(--ease-smooth) 180ms;
+  line-height: 1.6;
+  text-shadow:
+    0 1px 6px rgba(240, 235, 228, 0.95),
+    0 2px 24px rgba(240, 235, 228, 0.85),
+    0 0 36px rgba(240, 235, 228, 0.5);
+}
+.home__stage-subtitle.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* CTA in canvas area */
+.home__cta {
+  position: absolute; bottom: 8%; left: 50%; transform: translateX(-50%);
+  text-align: center; z-index: 5;
+  opacity: 0; transition: opacity 800ms var(--ease-smooth);
+  pointer-events: none;
+}
+.home__cta.visible { opacity: 1; pointer-events: auto; }
+
+.home__cta-btn {
+  display: inline-flex; align-items: center; gap: var(--space-sm);
+  padding: var(--space-md) var(--space-xl);
+  background: var(--primary);
+  color: var(--on-primary); font-family: var(--font-heading); font-weight: 700; font-size: 16px;
+  border-radius: var(--radius-pill); cursor: pointer;
+  transition: transform var(--duration-micro) ease-out, box-shadow var(--duration-micro) ease-out;
+  border: none;
+  box-shadow: 0 4px 24px rgba(131, 80, 38, 0.3);
+}
+.home__cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 40px rgba(131, 80, 38, 0.45);
+}
+
+/* Scroll hint — dark style for light bg */
+.home__scroll-hint {
+  position: absolute; bottom: 4%; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: var(--space-sm);
+  opacity: 0.5; animation: scrollHintPulse 2.5s ease-in-out infinite; z-index: 5;
+}
+.home__scroll-hint span {
+  font-size: 11px; font-weight: 700; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.15em;
+}
+.home__scroll-arrow {
+  width: 20px; height: 20px;
+  border-right: 2px solid var(--primary);
+  border-bottom: 2px solid var(--primary);
+  transform: rotate(45deg);
+  animation: scrollArrowBounce 2.5s ease-in-out infinite;
+}
+
+@keyframes scrollHintPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.7; } }
+@keyframes scrollArrowBounce { 0%, 100% { transform: rotate(45deg) translateY(0); } 50% { transform: rotate(45deg) translateY(8px); } }
+
+/* ===== PINCODE SECTION (light Ivory, below canvas) ===== */
+.home__pincode-section {
+  background: var(--surface);
+  padding: var(--section-gap) var(--space-xl);
+  text-align: center;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.home__pincode-title {
+  font-family: var(--font-heading);
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 700;
+  color: var(--on-surface);
+  margin-bottom: var(--space-sm);
+  letter-spacing: -0.02em;
+}
+
+.home__pincode-subtitle {
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: var(--space-2xl);
+  max-width: 420px;
+}
+
+.home__pincode-input-wrap {
+  position: relative;
+  margin-bottom: var(--space-xl);
+}
+
+.home__pincode-glow {
+  position: absolute; inset: -10px;
+  border-radius: var(--radius-pill);
+  background: radial-gradient(ellipse, rgba(163,106,62,0.12), transparent 70%);
+  opacity: 0;
+  transition: opacity var(--duration-micro) ease-out;
+  pointer-events: none;
+}
+.home__pincode-input-wrap:focus-within .home__pincode-glow { opacity: 1; }
+
+/* Constituency reveal (inline) */
+.home__reveal {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 520px;
+  animation: fadeInUp 500ms var(--ease-smooth) both;
+}
+.home__reveal.active { display: flex; }
+
+.home__reveal-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl);
+  text-align: center;
+  width: 100%;
+  box-shadow: var(--shadow-xl);
+}
+
+.home__reveal-name {
+  font-family: var(--font-heading);
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 700;
+  color: var(--on-surface);
+  margin-bottom: var(--space-md);
+  letter-spacing: -0.01em;
+}
+
+.home__reveal-stats {
+  display: flex; gap: var(--space-sm);
+  justify-content: center; flex-wrap: wrap;
+  margin-bottom: var(--space-xl);
+}
+
+.home__reveal-enter {
+  margin-top: var(--space-md);
+}
+
+@media (max-width: 767px) {
+  .home__progress { display: none; }
+  .home__text-overlay {
+    bottom: 4%;
+    right: 4%;
+    max-width: 260px;
+  }
+  .home__stage-title { white-space: normal; }
+  .home__cta { bottom: 10%; right: 4%; left: auto; transform: none; }
+  .home__canvas-section { height: 600vh; }
+}

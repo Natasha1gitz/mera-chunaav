@@ -1,0 +1,8 @@
+config.js
+node_modules/
+.DS_Store
+*.log
+
+# Ignore heavy image folders to keep repo size under 10MB limit
+/person to finger/
+/Finger to India/

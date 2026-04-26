@@ -1,0 +1,334 @@
+/* ============================================
+   Mera Chunaav — Animations (Civic Luxury)
+   @keyframes, Transition Utilities, Effects
+   Warm chestnut-tinted micro-animations
+   ============================================ */
+
+/* ---------- Entrance Animations ---------- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(80px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes riseIn {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  70% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ---------- Exit Animations ---------- */
+@keyframes fadeOutLeft {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(-100%); opacity: 0; }
+}
+
+@keyframes fadeOutRight {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(100%); opacity: 0; }
+}
+
+/* ---------- Looping Animations ---------- */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(163, 106, 62, 0.12); }
+  50% { box-shadow: 0 0 40px rgba(163, 106, 62, 0.25); }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spinIn {
+  from { transform: rotate(-180deg) scale(0); opacity: 0; }
+  to { transform: rotate(0deg) scale(1); opacity: 1; }
+}
+
+/* ---------- Typing Indicator ---------- */
+@keyframes typingDot {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-8px); opacity: 1; }
+}
+
+/* ---------- Ripple Effect ---------- */
+@keyframes ripple {
+  0% { transform: scale(0); opacity: 0.5; }
+  100% { transform: scale(4); opacity: 0; }
+}
+
+/* ---------- Shake ---------- */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+}
+
+/* ---------- Shimmer Sweep ---------- */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ---------- SVG Line Draw ---------- */
+@keyframes drawLine {
+  to { stroke-dashoffset: 0; }
+}
+
+/* ---------- 3D Card Flip ---------- */
+@keyframes flipToBack {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(180deg); }
+}
+
+@keyframes flipToFront {
+  from { transform: rotateY(180deg); }
+  to { transform: rotateY(0deg); }
+}
+
+/* ---------- Confetti Particle ---------- */
+@keyframes confettiFall {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--confetti-x), var(--confetti-y)) rotate(var(--confetti-r)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* ---------- Count-up bounce ---------- */
+@keyframes countBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+/* ---------- Digit Pop ---------- */
+@keyframes digitPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* ---------- Progress Ring ---------- */
+@keyframes progressRing {
+  from { stroke-dashoffset: var(--ring-circumference); }
+  to { stroke-dashoffset: var(--ring-offset); }
+}
+
+/* ---------- Slide transitions for quiz ---------- */
+@keyframes slideOutLeft {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(-100%); opacity: 0; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* ---------- Glass Shimmer (new for Civic Luxury) ---------- */
+@keyframes glassShimmer {
+  0% { background-position: -300% center; }
+  100% { background-position: 300% center; }
+}
+
+/* ============ Utility Classes ============ */
+
+.anim-fade-in {
+  animation: fadeIn var(--duration-page) var(--ease-smooth) both;
+}
+
+.anim-fade-in-up {
+  animation: fadeInUp var(--duration-page) var(--ease-smooth) both;
+}
+
+.anim-fade-in-down {
+  animation: fadeInDown var(--duration-page) var(--ease-smooth) both;
+}
+
+.anim-fade-in-left {
+  animation: fadeInLeft var(--duration-page) var(--ease-smooth) both;
+}
+
+.anim-fade-in-right {
+  animation: fadeInRight var(--duration-page) var(--ease-smooth) both;
+}
+
+.anim-slide-up {
+  animation: slideUp 600ms var(--ease-smooth) both;
+}
+
+.anim-rise-in {
+  animation: riseIn 600ms var(--ease-smooth) both;
+}
+
+.anim-scale-in {
+  animation: scaleIn var(--duration-page) var(--ease-smooth) both;
+}
+
+.anim-pop-in {
+  animation: popIn 400ms var(--ease-bounce) both;
+}
+
+.anim-shake {
+  animation: shake 300ms ease-in-out;
+}
+
+.anim-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.anim-glow-pulse {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+.anim-spin-in {
+  animation: spinIn 500ms var(--ease-smooth) both;
+}
+
+/* ---------- Stagger Delays ---------- */
+.stagger-1 { animation-delay: 80ms; }
+.stagger-2 { animation-delay: 160ms; }
+.stagger-3 { animation-delay: 240ms; }
+.stagger-4 { animation-delay: 320ms; }
+.stagger-5 { animation-delay: 400ms; }
+.stagger-6 { animation-delay: 480ms; }
+.stagger-7 { animation-delay: 560ms; }
+.stagger-8 { animation-delay: 640ms; }
+.stagger-9 { animation-delay: 720ms; }
+.stagger-10 { animation-delay: 800ms; }
+
+/* ---------- Scroll-reveal (hidden until observer triggers) ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--duration-page) var(--ease-smooth),
+              transform var(--duration-page) var(--ease-smooth);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity var(--duration-page) var(--ease-smooth),
+              transform var(--duration-page) var(--ease-smooth);
+}
+
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity var(--duration-page) var(--ease-smooth),
+              transform var(--duration-page) var(--ease-smooth);
+}
+
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ---------- Shimmer Effect ---------- */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(163, 106, 62, 0.04) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out;
+}
+
+/* ---------- Glass Shimmer (Civic Luxury) ---------- */
+.glass-shimmer {
+  background: linear-gradient(
+    110deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.15) 45%,
+    rgba(255, 255, 255, 0.08) 55%,
+    transparent 80%
+  );
+  background-size: 300% 100%;
+  animation: glassShimmer 2s ease-in-out;
+}
+
+/* ---------- Hover Utilities ---------- */
+.hover-lift {
+  transition: transform var(--duration-micro) ease-out,
+              box-shadow var(--duration-micro) ease-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+.hover-lift-lg {
+  transition: transform var(--duration-micro) ease-out,
+              box-shadow var(--duration-micro) ease-out;
+}
+
+.hover-lift-lg:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-glow-strong);
+}
