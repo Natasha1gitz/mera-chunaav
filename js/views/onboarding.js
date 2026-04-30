@@ -3,6 +3,12 @@
 // Pincode entry lives inside the homepage now
 // ============================================
 
+/**
+ * Onboarding controller for the inline pincode entry flow.
+ * Handles input validation, constituency lookup, reveal animation,
+ * and dashboard entry navigation.
+ * @namespace OnboardingView
+ */
 const OnboardingView = {
   init() {
     this.setupPincodeInput();
@@ -35,6 +41,11 @@ const OnboardingView = {
     });
   },
 
+  /**
+   * Processes a completed 6-digit pincode by loading data and revealing the constituency.
+   * @param {string} pincode - The 6-digit pincode entered by the user.
+   * @returns {Promise<void>}
+   */
   async onPincodeComplete(pincode) {
     if (!DataModule.loaded) {
       await DataModule.load();

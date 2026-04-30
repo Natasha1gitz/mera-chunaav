@@ -2,9 +2,18 @@
 // Mera Chunaav — Journey Map View
 // ============================================
 
+/**
+ * Journey Map view controller.
+ * Renders the full election timeline with alternating left/right cards,
+ * expandable details, and deep-links to the AI Guide.
+ * @namespace JourneyView
+ */
 const JourneyView = {
   initialized: false,
 
+  /**
+   * Initializes the journey timeline from the constituency's phase data.
+   */
   init() {
     if (this.initialized) return;
     const c = AppState.constituency;

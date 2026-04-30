@@ -3,10 +3,19 @@
 // Constituency data + lookup functions
 // ============================================
 
+/**
+ * Data module for loading, transforming, and querying constituency data.
+ * Supports loading from Dataset.json with fallback to built-in data.
+ * @namespace DataModule
+ */
 const DataModule = {
   constituencies: [],
   loaded: false,
 
+  /**
+   * Loads constituency data from Dataset.json, falling back to built-in data on failure.
+   * @returns {Promise<void>}
+   */
   async load() {
     try {
       // Try loading user-provided Dataset.json first
@@ -22,6 +31,12 @@ const DataModule = {
   },
 
   // Transform the user's Dataset.json format into our app format
+  /**
+   * Transforms the raw Dataset.json format into the application's internal constituency schema.
+   * Generates candidates, booth data, turnout history, and election phases.
+   * @param {Object} raw - The raw JSON object keyed by constituency name.
+   * @returns {Array<Object>} Array of transformed constituency objects.
+   */
   transformDataset(raw) {
     const partyColors = {
       'BJP': '#FF6B00', 'INC': '#19AAAF', 'AAP': '#0074D9', 'BSP': '#2196F3',
@@ -180,6 +195,11 @@ const DataModule = {
     ];
   },
 
+  /**
+   * Finds a constituency by its pincode using range-based matching.
+   * @param {string} pincode - The 6-digit pincode string.
+   * @returns {Object} The matching constituency object, or the first fallback.
+   */
   findByPincode(pincode) {
     const pin = parseInt(pincode);
     return this.constituencies.find(c =>

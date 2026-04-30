@@ -3,7 +3,16 @@
 // Streaming chat + quiz scoring
 // ============================================
 
+/**
+ * Module responsible for interacting with the Google Gemini API.
+ * Handles chat completions, streaming, and quiz scoring.
+ * @namespace GeminiModule
+ */
 const GeminiModule = {
+  /**
+   * Constructs the system prompt dynamically using the current constituency context.
+   * @returns {string} The formatted system prompt instruction for the LLM.
+   */
   getSystemPrompt() {
     const c = AppState.constituency;
     if (!c) return 'You are Mera Chunaav, a civic education guide for Indian elections.';
@@ -17,6 +26,12 @@ user persona = [${AppState.persona || 'General'}], language preference = [${AppS
 Answer their question using this real data where relevant. Be factual and non-partisan. Keep answers concise (under 200 words).`;
   },
 
+  /**
+   * Streams a chat completion response from the Gemini API using Server-Sent Events (SSE).
+   * @param {string} userMessage - The raw message input from the user.
+   * @returns {Promise<string>} The complete response string after streaming finishes.
+   * @throws {Error} If the API key is missing or the network request fails.
+   */
   async streamChat(userMessage) {
     const apiKey = window.CONFIG?.GEMINI_API_KEY;
     if (!apiKey || apiKey === 'YOUR_GEMINI_API_KEY_HERE') throw new Error('No API key');
@@ -68,6 +83,13 @@ Answer their question using this real data where relevant. Be factual and non-pa
     return fullResponse;
   },
 
+  /**
+   * Scores a user's quiz answer by prompting the Gemini API for evaluation and explanation.
+   * @param {string} question - The quiz question presented to the user.
+   * @param {string} userAnswer - The user's provided answer.
+   * @param {string} correctAnswer - The actual correct answer context.
+   * @returns {Promise<Object>} An object containing {correct, explanation, points}.
+   */
   async scoreQuizAnswer(question, userAnswer, correctAnswer) {
     const apiKey = window.CONFIG?.GEMINI_API_KEY;
     if (!apiKey || apiKey === 'YOUR_GEMINI_API_KEY_HERE') {

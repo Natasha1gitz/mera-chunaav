@@ -5,6 +5,12 @@
 // after the API is fully ready.
 // ============================================
 
+/**
+ * Google Maps integration module.
+ * Dynamically loads the Maps JavaScript SDK and renders an interactive map
+ * with custom dark styling for polling booth locations.
+ * @namespace MapsModule
+ */
 const MapsModule = {
   map: null,
   marker: null,
@@ -14,7 +20,7 @@ const MapsModule = {
     { elementType: 'labels.text.fill', stylers: [{ color: '#8ec3b9' }] },
     { elementType: 'labels.text.stroke', stylers: [{ color: '#1a3646' }] },
     { featureType: 'administrative.country', elementType: 'geometry.stroke', stylers: [{ color: '#4b6878' }] },
-    { featureType: 'land', elementType: 'geometry', stylers: [{ color: '#0A1628' }] },
+    { featureType: 'landscape', elementType: 'geometry', stylers: [{ color: '#0A1628' }] },
     { featureType: 'poi', elementType: 'geometry', stylers: [{ color: '#283d6a' }] },
     { featureType: 'poi', elementType: 'labels.text.fill', stylers: [{ color: '#6f9ba5' }] },
     { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#304a7d' }] },
@@ -24,6 +30,11 @@ const MapsModule = {
     { featureType: 'water', elementType: 'labels.text.fill', stylers: [{ color: '#4e6d70' }] }
   ],
 
+  /**
+   * Dynamically loads the Google Maps JavaScript SDK via script injection.
+   * Uses a global callback (__initMap) to resolve only when the API is ready.
+   * @returns {Promise<void>} Resolves when google.maps is available.
+   */
   load() {
     if (typeof google !== 'undefined' && google.maps) return Promise.resolve();
 
@@ -53,6 +64,14 @@ const MapsModule = {
     });
   },
 
+  /**
+   * Initializes a Google Map inside the given container with a marker.
+   * @param {HTMLElement} container - The DOM element to render the map into.
+   * @param {number} lat - Latitude of the polling booth.
+   * @param {number} lng - Longitude of the polling booth.
+   * @param {string} title - The marker tooltip title.
+   * @returns {Promise<void>}
+   */
   async init(container, lat, lng, title) {
     await this.load();
 

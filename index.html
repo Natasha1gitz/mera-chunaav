@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Mera Chunaav — Your personalized election education assistant. Discover your constituency, candidates, and civic rights.">
   <meta name="theme-color" content="#fcf9f4">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://*.googleapis.com https://*.gstatic.com https://*.firebaseapp.com https://*.firebasestorage.app wss://*.firebaseio.com blob: data:;">
   <title>Mera Chunaav — Your Vote, Your Story</title>
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
@@ -69,7 +70,7 @@
         <!-- Scroll animation area (light background) -->
         <div class="home__canvas-section">
           <div class="home__canvas-wrap">
-            <canvas id="home-canvas" class="home__canvas"></canvas>
+            <canvas id="home-canvas" class="home__canvas" role="img" aria-label="Animated scroll illustration showing the journey from citizen to voter"></canvas>
 
             <div class="home__text-overlay">
               <h2 class="home__stage-title visible" data-stage="0">Bharat</h2>
@@ -153,7 +154,10 @@
           <div style="text-align:center; margin-bottom:var(--space-3xl);">
             <span class="badge badge--accent" id="dash-state" style="margin-bottom:var(--space-md);display:inline-block">State</span>
             <h1 style="font-size:var(--text-section);margin-bottom:var(--space-sm)" id="dash-name">Your Constituency</h1>
-            <p class="text-muted" style="max-width:500px;margin:0 auto">Your personalized election hub — explore data, chat with AI, and test your civic knowledge</p>
+            <p class="text-muted" style="max-width:500px;margin:0 auto; margin-bottom: 1rem;">Your personalized election hub — explore data, chat with AI, and test your civic knowledge</p>
+            <div class="mission-statement" style="max-width: 600px; margin: 0 auto; background: var(--surface-bright); padding: 1rem; border-radius: var(--radius-md); border-left: 4px solid var(--accent); text-align: left; font-size: var(--text-sm);">
+              <strong>Mission:</strong> Mera Chunaav exists to solve the critical gap in accessible, hyper-local civic education by empowering every Indian citizen with clear, actionable insights about their exact constituency and democratic rights.
+            </div>
           </div>
 
           <!-- Feature Cards Grid -->
@@ -217,7 +221,7 @@
             <div id="ai-topics" class="ai-guide__topics"></div>
           </div>
           <div class="split-layout__main ai-guide">
-            <div class="chat-area" id="chat-messages">
+            <div class="chat-area" id="chat-messages" aria-live="polite">
               <div class="chat-area__welcome">
                 <div class="chat-area__welcome-icon">💬</div>
                 <h3 class="chat-area__welcome-title">Ask Mera Chunaav</h3>

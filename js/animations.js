@@ -3,6 +3,11 @@
 // IntersectionObserver, Counters, Confetti
 // ============================================
 
+/**
+ * Animations module providing scroll-reveal observers, count-up counters,
+ * confetti effects, sparkline generation, and micro-interaction utilities.
+ * @namespace Animations
+ */
 const Animations = {
   // ---------- IntersectionObserver for scroll reveals ----------
   initObserver() {
@@ -35,6 +40,12 @@ const Animations = {
   },
 
   // ---------- Count-up Animation ----------
+  /**
+   * Animates a numeric value from 0 to a target with easing.
+   * @param {HTMLElement} element - The DOM element to update.
+   * @param {number} target - The target number to count up to.
+   * @param {number} [duration=1500] - Animation duration in milliseconds.
+   */
   countUp(element, target, duration = 1500) {
     const start = 0;
     const startTime = performance.now();
@@ -109,6 +120,12 @@ const Animations = {
   },
 
   // ---------- Confetti Explosion ----------
+  /**
+   * Creates a confetti explosion effect at the specified screen coordinates.
+   * @param {number} originX - The X coordinate of the explosion origin.
+   * @param {number} originY - The Y coordinate of the explosion origin.
+   * @param {number} [count=60] - Number of confetti particles to generate.
+   */
   confetti(originX, originY, count = 60) {
     const container = document.createElement('div');
     container.className = 'confetti-container';
@@ -171,6 +188,14 @@ const Animations = {
   },
 
   // ---------- Generate Sparkline SVG ----------
+  /**
+   * Generates a sparkline SVG element from a data array.
+   * @param {number[]} data - Array of numeric values to plot.
+   * @param {number} [width=100] - SVG width.
+   * @param {number} [height=36] - SVG height.
+   * @param {string} [color='var(--saffron)'] - Stroke color for the line.
+   * @returns {SVGElement} The constructed SVG sparkline element.
+   */
   createSparkline(data, width = 100, height = 36, color = 'var(--saffron)') {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('viewBox', `0 0 ${width} ${height}`);

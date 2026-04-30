@@ -3,6 +3,10 @@
 // Flow: Home → Dashboard → Feature Views
 // ============================================
 
+/**
+ * Global application state manager using the Observer pattern.
+ * @namespace AppState
+ */
 const AppState = {
   constituency: null,
   persona: null,
@@ -14,16 +18,29 @@ const AppState = {
   userId: null,
   _listeners: [],
 
+  /**
+   * Updates a state key and triggers all subscribed listeners.
+   * @param {string} key - The state key to update.
+   * @param {*} value - The new value for the key.
+   */
   update(key, value) {
     this[key] = value;
     this._listeners.forEach(fn => fn(key, value));
   },
 
+  /**
+   * Subscribes a listener function to state changes.
+   * @param {Function} fn - The callback function to execute on state change.
+   */
   subscribe(fn) {
     this._listeners.push(fn);
   }
 };
 
+/**
+ * Application router responsible for handling view navigation and UI state.
+ * @namespace Router
+ */
 const Router = {
   views: ['home', 'dashboard', 'constituency', 'ai-guide', 'journey', 'quiz'],
 
@@ -52,6 +69,11 @@ const Router = {
     }, { passive: true });
   },
 
+  /**
+   * Navigates to a specific application view and updates the UI accordingly.
+   * @param {string} viewId - The ID of the view to navigate to.
+   * @returns {void}
+   */
   navigate(viewId) {
     if (!this.views.includes(viewId)) return;
 
@@ -136,6 +158,11 @@ const Router = {
 };
 
 // ---------- Utilities ----------
+/**
+ * Creates a material-design style ripple effect on click.
+ * @param {MouseEvent} e - The click event object.
+ * @param {HTMLElement} el - The element to attach the ripple to.
+ */
 function createRipple(e, el) {
   const rect = el.getBoundingClientRect();
   const ripple = document.createElement('span');
@@ -148,6 +175,11 @@ function createRipple(e, el) {
   ripple.addEventListener('animationend', () => ripple.remove());
 }
 
+/**
+ * Formats a raw number into the Indian numbering system format (e.g., 1,00,000).
+ * @param {number|string} num - The number to format.
+ * @returns {string} The formatted string.
+ */
 function formatIndianNumber(num) {
   if (num === null || num === undefined) return '0';
   const str = num.toString();
@@ -158,6 +190,11 @@ function formatIndianNumber(num) {
   return rest.replace(/\B(?=(\d{2})+(?!\d))/g, ',') + lastThree;
 }
 
+/**
+ * Sanitizes an HTML string to prevent XSS attacks by converting it to text content first.
+ * @param {string} str - The raw HTML/text string.
+ * @returns {string} The sanitized HTML string.
+ */
 function sanitizeHTML(str) {
   const div = document.createElement('div');
   div.textContent = str;

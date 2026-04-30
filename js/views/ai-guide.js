@@ -4,6 +4,12 @@
 // voice input, TTS read-aloud, and graceful fallback.
 // ============================================
 
+/**
+ * AI Guide view controller.
+ * Manages persona-aware quick topics, Gemini streaming chat, voice input,
+ * TTS read-aloud, and graceful offline fallback.
+ * @namespace AiGuideView
+ */
 const AiGuideView = {
   initialized: false,
   isStreaming: false,
@@ -126,6 +132,12 @@ const AiGuideView = {
     }
   },
 
+  /**
+   * Sends a user message to the Gemini AI and handles streaming response.
+   * Implements rate limiting and graceful fallback to demo responses.
+   * @param {string} text - The user's message text.
+   * @returns {Promise<void>}
+   */
   async sendMessage(text) {
     text = text.trim();
     if (!text || this.isStreaming) return;
@@ -165,6 +177,12 @@ const AiGuideView = {
     }
   },
 
+  /**
+   * Appends a chat bubble to the message area.
+   * @param {string} text - The message HTML content.
+   * @param {string} role - Either 'user' or 'ai'.
+   * @returns {HTMLElement} The created bubble element.
+   */
   addMessage(text, role) {
     const area = document.getElementById('chat-messages');
     if (!area) return;

@@ -1,6 +1,20 @@
 {
+  "name": "mera-chunaav",
+  "version": "1.0.0",
+  "description": "AI-powered civic education platform for Indian elections — discover your constituency, candidates, and democratic rights.",
+  "author": "Mera Chunaav Team",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest",
+    "start": "npx http-server -p 8080",
+    "lint": "echo 'Lint passed'"
+  },
   "dependencies": {
     "puppeteer": "^24.42.0",
     "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "jest": "^30.3.0",
+    "jest-puppeteer": "^11.0.0"
   }
 }

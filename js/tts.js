@@ -2,6 +2,12 @@
 // Mera Chunaav — Text-to-Speech Module
 // ============================================
 
+/**
+ * Text-to-Speech module using the Google Cloud TTS API.
+ * Falls back to the browser's native SpeechSynthesis API when no key is configured.
+ * Selects premium Wavenet voices based on the user's language preference.
+ * @namespace TtsModule
+ */
 const TtsModule = {
   audioContext: null,
   speaking: false,
@@ -13,6 +19,11 @@ const TtsModule = {
     return this.audioContext;
   },
 
+  /**
+   * Speaks the given text aloud using Google Cloud TTS or browser fallback.
+   * @param {string} text - The text content to synthesize into speech.
+   * @returns {Promise<void>}
+   */
   async speak(text) {
     if (this.speaking) return;
 

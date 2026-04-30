@@ -2,6 +2,12 @@
 // Mera Chunaav — Civic Quiz View
 // ============================================
 
+/**
+ * Civic Quiz view controller.
+ * Manages question rendering, answer checking with Gemini scoring,
+ * score ring animations, confetti effects, and social sharing.
+ * @namespace QuizView
+ */
 const QuizView = {
   initialized: false,
   questions: [],
@@ -23,6 +29,9 @@ const QuizView = {
     { q: "Can a person vote if their name is not on the voter list?", options: ["Yes, with any ID", "No, they cannot vote", "Only with a court order"], correct: 1, explanation: "A person whose name is not on the electoral roll cannot vote. They must register through Form 6 before the deadline." }
   ],
 
+  /**
+   * Initializes the quiz by shuffling questions and rendering the first one.
+   */
   init() {
     if (this.initialized && this.currentIndex > 0) return;
     this.questions = [...this.DEMO_QUESTIONS].sort(() => Math.random() - 0.5).slice(0, this.totalQuestions);
@@ -99,6 +108,12 @@ const QuizView = {
     });
   },
 
+  /**
+   * Evaluates the user's selected answer, highlights correct/incorrect options,
+   * shows explanation, and triggers score animation or confetti.
+   * @param {Object} q - The current question object.
+   * @param {number} selected - The index of the user's selected option.
+   */
   checkAnswer(q, selected) {
     const container = document.getElementById('quiz-question');
     const options = container.querySelectorAll('.quiz__option');

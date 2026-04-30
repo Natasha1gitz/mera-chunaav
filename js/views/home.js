@@ -5,6 +5,13 @@
 //   Phase 2: Inked finger → India map
 // ============================================
 
+/**
+ * Homepage scroll animation controller.
+ * Manages a two-phase canvas animation sequence driven by scroll position:
+ * Phase 1: Person silhouette → Inked finger, Phase 2: Inked finger → India map.
+ * Images are loaded from Firebase Storage CDN for performance.
+ * @namespace HomeView
+ */
 const HomeView = {
   canvas: null,
   ctx: null,

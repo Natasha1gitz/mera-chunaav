@@ -2,9 +2,18 @@
 // Mera Chunaav — Constituency Intelligence View
 // ============================================
 
+/**
+ * Constituency Intelligence view controller.
+ * Renders voter metrics, turnout charts, candidate cards, and the polling booth map.
+ * @namespace ConstituencyView
+ */
 const ConstituencyView = {
   initialized: false,
 
+  /**
+   * Initializes all sub-components of the constituency view.
+   * Prevents re-initialization if already rendered.
+   */
   init() {
     if (this.initialized) return;
     const c = AppState.constituency;
@@ -143,6 +152,10 @@ const ConstituencyView = {
     });
   },
 
+  /**
+   * Renders candidate flip-cards with party colors, vote shares, and background details.
+   * @param {Object} c - The constituency data object.
+   */
   renderCandidates(c) {
     const container = document.getElementById('candidates-scroll');
     const countEl = document.getElementById('candidates-count');
@@ -189,6 +202,10 @@ const ConstituencyView = {
     });
   },
 
+  /**
+   * Initializes the Google Map showing the nearest polling booth location.
+   * @param {Object} c - The constituency data object containing booth coordinates.
+   */
   renderMap(c) {
     const container = document.getElementById('map-container');
     const overlay = document.getElementById('map-overlay');

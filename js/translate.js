@@ -4,9 +4,18 @@
 // Caches results in memory and sessionStorage to avoid repeat calls.
 // ============================================
 
+/**
+ * Cloud Translation module for dynamic UI localization.
+ * Uses the Google Translate API to translate key UI elements
+ * and caches results in memory and sessionStorage.
+ * @namespace TranslateModule
+ */
 const TranslateModule = {
   cache: {},
 
+  /**
+   * Initializes language toggle buttons and binds click handlers.
+   */
   init() {
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -18,6 +27,12 @@ const TranslateModule = {
     });
   },
 
+  /**
+   * Switches the application language by translating all key UI text elements.
+   * Restores original English text when switching back to 'en'.
+   * @param {string} lang - The target language code (e.g., 'hi', 'ta', 'bn').
+   * @returns {Promise<void>}
+   */
   async switchLanguage(lang) {
     AppState.update('language', lang);
 
@@ -68,7 +83,8 @@ const TranslateModule = {
         el.textContent = translated;
         this.cache[cacheKey] = translated;
         sessionStorage.setItem(cacheKey, translated);
-      } catch {
+      } catch (err) {
+        console.warn('Translation failed for text:', text, err);
         // Keep original text on failure
       }
     }
