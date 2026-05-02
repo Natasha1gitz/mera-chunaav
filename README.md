@@ -22,7 +22,7 @@
 ┌──────────────────────────────────────────────────────────┐
 │                     FRONTEND (Vanilla JS SPA)             │
 │  HTML5 · CSS3 Design System · ES6+ Modules · Canvas      │
-│  Firebase Auth · Google Analytics · Lazy Loading          │
+│  Service Worker PWA · Global Error Bounds · Lazy Loading  │
 ├──────────────────────────────────────────────────────────┤
 │                   AI PIPELINE (Gemini 2.0 Flash)          │
 │  1. Streaming SSE Chat  2. Quiz Scoring  3. Demo Fallback │
@@ -67,7 +67,8 @@ Our architectural and design decisions were strictly driven by the hackathon's c
 | Numeric Validation | Pincode input restricted to digits only |
 | Rate Limiting | Client-side debounce on AI requests (configurable cooldown) |
 | API Key Protection | Keys in `.gitignore`-excluded `config.js` — never committed |
-| Error Sanitization | No raw stack traces leaked to users |
+| Error Sanitization | No raw stack traces leaked to users (Global Error Bounds) |
+| Server Headers | `nginx.conf` enforces HSTS, X-Frame-Options, nosniff |
 
 ---
 
@@ -127,14 +128,18 @@ npm test
 
 ```
 mera-chunaav/
+├── .github/              # GitHub Actions CI/CD Pipeline
 ├── .eslintrc.js          # ESLint code quality rules
 ├── .gitignore            # Excludes config.js, node_modules
 ├── .dockerignore         # Docker build optimization (ignores node_modules, tests)
 ├── Dockerfile            # Nginx Alpine container for Cloud Run
+├── nginx.conf            # Server-level security headers (HSTS, etc.)
 ├── Dataset.json          # Real ECI constituency data
 ├── index.html            # SPA entry — CSP, skip-link, semantic HTML, og: tags
+├── sw.js                 # Service Worker (PWA offline caching)
 ├── manifest.json         # PWA Web App Manifest (installability/best practices)
 ├── robots.txt            # Search Engine Optimization (SEO)
+├── sitemap.xml           # XML Sitemap mapped for web crawlers
 ├── package.json          # Scripts: test, lint, lint:fix
 ├── config.js             # API keys (gitignored, never committed)
 ├── CONTRIBUTING.md       # Open Source contribution guidelines
