@@ -129,11 +129,16 @@ npm test
 mera-chunaav/
 ├── .eslintrc.js          # ESLint code quality rules
 ├── .gitignore            # Excludes config.js, node_modules
+├── .dockerignore         # Docker build optimization (ignores node_modules, tests)
 ├── Dockerfile            # Nginx Alpine container for Cloud Run
 ├── Dataset.json          # Real ECI constituency data
-├── index.html            # SPA entry — CSP, skip-link, semantic HTML
+├── index.html            # SPA entry — CSP, skip-link, semantic HTML, og: tags
+├── manifest.json         # PWA Web App Manifest (installability/best practices)
+├── robots.txt            # Search Engine Optimization (SEO)
 ├── package.json          # Scripts: test, lint, lint:fix
 ├── config.js             # API keys (gitignored, never committed)
+├── CONTRIBUTING.md       # Open Source contribution guidelines
+├── LICENSE               # MIT Open Source License
 ├── css/
 │   ├── base.css          # Design system tokens, reset, accessibility
 │   ├── layout.css        # Grid layouts, responsive breakpoints
