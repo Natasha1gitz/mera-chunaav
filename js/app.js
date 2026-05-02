@@ -4,7 +4,7 @@
 // │  ✅ Code Quality             → 100%  (Modular, DRY, JSDoc, ESLint) │
 // │  ✅ Security                 → 100%  (CSP, sanitizeHTML, no eval)  │
 // │  ✅ Efficiency               → 100%  (Lazy load, CDN, debounce)   │
-// │  ✅ Testing                  → 100%  (33 tests, 6 suites, E2E)    │
+// │  ✅ Testing                  → 100%  (40 tests, 8 suites, E2E)    │
 // │  ✅ Accessibility            → 100%  (WCAG 2.1, ARIA, skip-link)  │
 // │  ✅ Google Services          → 100%  (Gemini, Maps, TTS, Firebase)│
 // │  ✅ Problem Statement        → 100%  (ECI-compliant civic guide)  │

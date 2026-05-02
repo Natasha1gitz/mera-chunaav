@@ -17,6 +17,10 @@
  */
 const Animations = {
   // ---------- IntersectionObserver for scroll reveals ----------
+  /**
+   * Creates an IntersectionObserver that reveals elements and triggers count-up animations.
+   * @returns {IntersectionObserver} The initialized observer instance.
+   */
   initObserver() {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -41,7 +45,9 @@ const Animations = {
     return observer;
   },
 
-  // Re-init observer (for dynamically added elements)
+  /**
+   * Re-initializes the observer for dynamically added elements.
+   */
   refreshObserver() {
     this.initObserver();
   },
@@ -95,7 +101,11 @@ const Animations = {
     requestAnimationFrame(tick);
   },
 
-  // ---------- Stagger Reveal ----------
+  /**
+   * Sequentially reveals a list of elements with staggered fade-in and slide-up transitions.
+   * @param {HTMLElement[]} elements - Array of DOM elements to animate.
+   * @param {number} [delay=80] - Delay between each element's animation in milliseconds.
+   */
   staggerReveal(elements, delay = 80) {
     elements.forEach((el, i) => {
       el.style.opacity = '0';
@@ -108,7 +118,13 @@ const Animations = {
     });
   },
 
-  // ---------- Typewriter Effect ----------
+  /**
+   * Simulates a typewriter effect by appending characters one at a time.
+   * @param {HTMLElement} element - The element to type into.
+   * @param {string} text - The full text string to type.
+   * @param {number} [speed=30] - Delay between each character in milliseconds.
+   * @returns {Promise<void>} Resolves when the full text has been typed.
+   */
   typewriter(element, text, speed = 30) {
     return new Promise(resolve => {
       let i = 0;
@@ -171,13 +187,19 @@ const Animations = {
     setTimeout(() => container.remove(), 2000);
   },
 
-  // ---------- Shimmer Sweep ----------
+  /**
+   * Applies a shimmer sweep highlight animation to an element.
+   * @param {HTMLElement} element - The element to animate.
+   */
   shimmerSweep(element) {
     element.classList.add('shimmer-sweep');
     setTimeout(() => element.classList.remove('shimmer-sweep'), 1500);
   },
 
-  // ---------- Shake ----------
+  /**
+   * Applies a horizontal shake animation to an element.
+   * @param {HTMLElement} element - The element to shake.
+   */
   shake(element) {
     element.classList.add('anim-shake');
     element.addEventListener('animationend', () => {
@@ -185,7 +207,11 @@ const Animations = {
     }, { once: true });
   },
 
-  // ---------- Draw SVG Line ----------
+  /**
+   * Animates an SVG path drawing with a stroke-dasharray reveal.
+   * @param {SVGPathElement} svgPath - The SVG path element to animate.
+   * @param {number} [duration=1200] - Animation duration in milliseconds.
+   */
   drawLine(svgPath, duration = 1200) {
     const length = svgPath.getTotalLength();
     svgPath.style.setProperty('--line-length', length);

@@ -37,6 +37,10 @@ const ConstituencyView = {
     setTimeout(() => Animations.refreshObserver(), 100);
   },
 
+  /**
+   * Renders the hero section with constituency name and winning candidate tagline.
+   * @param {Object} c - The constituency data object.
+   */
   renderHero(c) {
     const ghost = document.getElementById('const-hero-ghost');
     const tagline = document.getElementById('const-hero-tagline');
@@ -48,6 +52,11 @@ const ConstituencyView = {
     }
   },
 
+  /**
+   * Renders the 4 metric cards (voters, turnout, women electors, winning margin)
+   * with sparkline mini-charts and count-up animations.
+   * @param {Object} c - The constituency data object.
+   */
   renderMetrics(c) {
     const metrics = [
       { label: 'REGISTERED VOTERS', value: c.electors.total, data: [c.electors.total * 0.88, c.electors.total * 0.94, c.electors.total], delta: '+6.2%', up: true },
@@ -82,6 +91,10 @@ const ConstituencyView = {
     });
   },
 
+  /**
+   * Renders an interactive SVG turnout trend chart with tooltips.
+   * @param {Object} c - The constituency data object.
+   */
   renderTurnoutChart(c) {
     const container = document.getElementById('turnout-chart');
     if (!container) return;
@@ -234,6 +247,9 @@ const ConstituencyView = {
     }
   },
 
+  /**
+   * Enables horizontal drag-to-scroll on candidate card and horizontal scroll containers.
+   */
   setupDragScroll() {
     document.querySelectorAll('.candidates-scroll, .h-scroll').forEach(el => {
       let isDown = false, startX, scrollLeft;

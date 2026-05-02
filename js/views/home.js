@@ -102,6 +102,9 @@ const HomeView = {
     "Finger_transforms_into_202604270019_079.jpg"
   ],
 
+  /**
+   * Initializes the canvas, loads image sequences, binds scroll events, and starts the animation loop.
+   */
   init() {
     if (this.initialized) return;
     this.canvas = document.getElementById('home-canvas');
@@ -117,6 +120,9 @@ const HomeView = {
     window.addEventListener('resize', () => this.resize());
   },
 
+  /**
+   * Loads Phase 1 and Phase 2 image sequences from Firebase Storage CDN.
+   */
   loadImages() {
     this.phase1Images = [];
     this.phase2Images = [];
@@ -142,6 +148,9 @@ const HomeView = {
     });
   },
 
+  /**
+   * Resizes the canvas to match its container, accounting for device pixel ratio.
+   */
   resize() {
     const dpr = window.devicePixelRatio || 1;
     const rect = this.canvas.parentElement.getBoundingClientRect();
@@ -153,6 +162,10 @@ const HomeView = {
     this.canvasH = rect.height;
   },
 
+  /**
+   * Binds the scroll event to update scroll progress, stage tracking, and text overlays.
+   * Uses passive listener for performance.
+   */
   bindScroll() {
     window.addEventListener('scroll', () => {
       const canvasSection = document.querySelector('.home__canvas-section');
@@ -175,6 +188,9 @@ const HomeView = {
     }, { passive: true });
   },
 
+  /**
+   * Shows/hides text overlay elements based on the current animation stage.
+   */
   updateTextOverlays() {
     const titles = document.querySelectorAll('.home__stage-title');
     const subtitles = document.querySelectorAll('.home__stage-subtitle');
@@ -194,6 +210,11 @@ const HomeView = {
     if (scrollHint) scrollHint.style.opacity = this.scrollProgress < 0.03 ? '0.5' : '0';
   },
 
+  /**
+   * Returns the background color for the canvas section to seamlessly blend with images.
+   * @param {HTMLImageElement} img - The current image (used for reference).
+   * @returns {string} The CSS color string for the background.
+   */
   getBgColor(img) {
     // Hardcoded exact match requested by user to avoid compression artifact issues
     this.bgColor = 'rgb(245, 239, 235)';
@@ -246,6 +267,10 @@ const HomeView = {
     ctx.drawImage(img, drawX, drawY, drawW, drawH);
   },
 
+  /**
+   * Main animation loop. Smoothly interpolates scroll position and renders
+   * the correct frame from Phase 1 or Phase 2 with cross-fade blending.
+   */
   animate() {
     this.animFrameId = requestAnimationFrame(() => this.animate());
     const ctx = this.ctx;
@@ -336,6 +361,9 @@ const HomeView = {
     }
   },
 
+  /**
+   * Cleans up the animation loop and releases image references.
+   */
   destroy() {
     if (this.animFrameId) cancelAnimationFrame(this.animFrameId);
     this.animFrameId = null;
