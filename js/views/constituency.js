@@ -184,7 +184,7 @@ const ConstituencyView = {
     if (countEl) countEl.textContent = c.candidates.length;
     container.innerHTML = '';
 
-    c.candidates.forEach((cand, i) => {
+    c.candidates.forEach((cand) => {
       const initials = cand.name.split(' ').map(w => w[0]).join('');
       const card = document.createElement('div');
       card.className = `flip-card ${cand.winner ? 'flip-card--winner' : ''} hover-lift-lg`;

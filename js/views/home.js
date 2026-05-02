@@ -215,18 +215,18 @@ const HomeView = {
    * @param {HTMLImageElement} img - The current image (used for reference).
    * @returns {string} The CSS color string for the background.
    */
-  getBgColor(img) {
+  getBgColor(_img) {
     // Hardcoded exact match requested by user to avoid compression artifact issues
     this.bgColor = 'rgb(245, 239, 235)';
-    
+
     // Also update CSS variable or background color for smooth transitions if needed
     const canvasSection = document.querySelector('.home__canvas-section');
     if (canvasSection) canvasSection.style.backgroundColor = this.bgColor;
-    
+
     // Automatically apply this image's background to the entire site so there are no borders
     document.documentElement.style.setProperty('--surface', this.bgColor);
     document.documentElement.style.setProperty('--surface-bright', this.bgColor);
-    
+
     return this.bgColor;
   },
 
@@ -259,7 +259,7 @@ const HomeView = {
     // Stretch width to full screen width (w), keep the height the same
     const drawW = w;
     const drawH = originalDrawH;
-    
+
     // Draw starting from 0 (left edge) and center vertically
     const drawX = 0;
     const drawY = (h - drawH) / 2;

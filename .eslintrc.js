@@ -39,10 +39,12 @@ module.exports = {
     // External SDKs
     firebase: 'readonly',
     google: 'readonly',
+    webkitSpeechRecognition: 'readonly',
   },
   rules: {
     // ── Code Quality ────────────────────────────────────────
-    'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+    'no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^[A-Z]|formatIndianNumber|sanitizeHTML|createRipple|debounce' }],
+    'no-redeclare': 'off',
     'no-console': 'off',
     'prefer-const': 'error',
     'no-var': 'error',

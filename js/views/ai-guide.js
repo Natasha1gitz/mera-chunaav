@@ -299,7 +299,7 @@ const AiGuideView = {
    * @param {string} question - The user's original question.
    * @returns {Promise<void>}
    */
-  async demoResponse(question) {
+  async demoResponse(_question) {
     const c = AppState.constituency;
     const response = `Based on data from ${c?.name || 'your constituency'} in ${c?.state || 'your state'}, let me help you with that.\n\nThe constituency has ${c ? formatIndianNumber(c.electors.total) : 'many'} registered voters with a turnout of ${c?.turnout['2024'] || '58'}% in the 2024 general elections.\n\nIs there anything specific about the election process you'd like to know?`;
 

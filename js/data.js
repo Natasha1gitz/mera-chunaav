@@ -199,7 +199,7 @@ const DataModule = {
    * @param {number} phaseNum - The election phase number for date calculation.
    * @returns {Array<Object>} Array of phase milestone objects.
    */
-  generatePhases(phaseNum) {
+  generatePhases(_phaseNum) {
     return [
       { id: 1, label: 'Notification', title: 'Issue of Notification', days: 1, desc: 'Election Commission issues official notification for the constituency.', status: 'completed', date: '2024-03-16' },
       { id: 2, label: 'Nomination', title: 'Filing of Nominations', days: 7, desc: 'Candidates file nomination papers with returning officer.', status: 'completed', date: '2024-04-18' },

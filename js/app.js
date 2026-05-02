@@ -229,7 +229,7 @@ function formatIndianNumber(num) {
   const str = num.toString();
   if (str.length <= 3) return str;
   let lastThree = str.substring(str.length - 3);
-  let rest = str.substring(0, str.length - 3);
+  const rest = str.substring(0, str.length - 3);
   if (rest !== '') lastThree = ',' + lastThree;
   return rest.replace(/\B(?=(\d{2})+(?!\d))/g, ',') + lastThree;
 }

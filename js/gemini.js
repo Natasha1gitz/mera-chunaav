@@ -65,6 +65,7 @@ Answer their question using this real data where relevant. Be factual and non-pa
     const decoder = new TextDecoder();
     let fullResponse = '';
 
+    // eslint-disable-next-line no-constant-condition
     while (true) {
       const { done, value } = await reader.read();
       if (done) break;
