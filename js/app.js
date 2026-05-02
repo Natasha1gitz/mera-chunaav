@@ -269,3 +269,25 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typeof OnboardingView !== 'undefined') OnboardingView.init();
   if (typeof TranslateModule !== 'undefined') TranslateModule.init();
 });
+
+// ---------- Global Error Boundaries & PWA ----------
+window.addEventListener('error', (e) => {
+  // eslint-disable-next-line no-console
+  console.warn('Global Error Caught:', e.message);
+  // In a real app, send this to a logging service (e.g., Sentry)
+});
+
+window.addEventListener('unhandledrejection', (e) => {
+  // eslint-disable-next-line no-console
+  console.warn('Unhandled Promise Rejection:', e.reason);
+});
+
+// Register Service Worker for PWA Offline Support
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(err => {
+      // eslint-disable-next-line no-console
+      console.warn('ServiceWorker registration failed: ', err);
+    });
+  });
+}
