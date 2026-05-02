@@ -1,3 +1,10 @@
+/**
+ * @fileoverview Journey Map view controller for the election timeline.
+ * Renders alternating left/right milestone cards with expandable details
+ * and deep-links to the AI Guide for contextual questions.
+ * @module views/journey
+ */
+
 // ============================================
 // Mera Chunaav — Journey Map View
 // ============================================
@@ -24,6 +31,10 @@ const JourneyView = {
     setTimeout(() => Animations.refreshObserver(), 100);
   },
 
+  /**
+   * Renders the election timeline cards inside the timeline container.
+   * @param {Object} c - The constituency object containing phase data.
+   */
   renderTimeline(c) {
     const container = document.getElementById('timeline-container');
     if (!container) return;
@@ -88,6 +99,11 @@ const JourneyView = {
     });
   },
 
+  /**
+   * Calculates a countdown badge string relative to the current date.
+   * @param {string} dateStr - ISO date string for the phase milestone.
+   * @returns {string} HTML badge string showing completion status or days remaining.
+   */
   getCountdown(dateStr) {
     if (!dateStr) return '<span class="badge badge--muted">Date TBD</span>';
     const target = new Date(dateStr);

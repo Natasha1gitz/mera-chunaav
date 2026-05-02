@@ -254,3 +254,25 @@ input, textarea, select { font-family: inherit; font-size: inherit; color: inher
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0;
 }
+
+/* ---------- Skip-to-Content Link (WCAG 2.1 AA) ---------- */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--primary);
+  color: var(--on-primary);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: var(--text-label);
+  z-index: var(--z-toast);
+  text-decoration: none;
+  transition: top var(--duration-micro) ease-out;
+}
+.skip-link:focus {
+  top: var(--space-sm);
+  outline: 2px solid var(--primary-container);
+  outline-offset: 2px;
+}

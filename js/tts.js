@@ -1,3 +1,10 @@
+/**
+ * @fileoverview Text-to-Speech module using Google Cloud TTS API with
+ * automatic fallback to the browser's native SpeechSynthesis API.
+ * Selects premium Wavenet voices based on the user's language preference.
+ * @module tts
+ */
+
 // ============================================
 // Mera Chunaav — Text-to-Speech Module
 // ============================================

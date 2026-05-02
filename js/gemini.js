@@ -1,3 +1,10 @@
+/**
+ * @fileoverview Gemini API integration module for Mera Chunaav.
+ * Provides streaming chat completions and quiz answer scoring
+ * via the Google Generative AI REST API.
+ * @module gemini
+ */
+
 // ============================================
 // Mera Chunaav — Gemini API Module
 // Streaming chat + quiz scoring
@@ -112,7 +119,8 @@ Answer their question using this real data where relevant. Be factual and non-pa
     const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
     try {
       return JSON.parse(text.replace(/```json\n?/g, '').replace(/```/g, '').trim());
-    } catch {
+    } catch (parseErr) {
+      console.warn('Gemini quiz response parse error:', parseErr.message);
       return { correct: false, explanation: text, points: 0 };
     }
   }

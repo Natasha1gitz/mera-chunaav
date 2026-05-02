@@ -1,3 +1,10 @@
+/**
+ * @fileoverview Civic Quiz view controller with Gemini AI scoring.
+ * Manages question rendering, answer checking, score ring animations,
+ * confetti effects, and social sharing via the Web Share API.
+ * @module views/quiz
+ */
+
 // ============================================
 // Mera Chunaav — Civic Quiz View
 // ============================================
@@ -43,6 +50,9 @@ const QuizView = {
     this.initialized = true;
   },
 
+  /**
+   * Renders the current quiz question card with options and event handlers.
+   */
   renderQuestion() {
     const container = document.getElementById('quiz-question');
     if (!container || this.currentIndex >= this.questions.length) {
@@ -154,6 +164,9 @@ const QuizView = {
     AppState.update('quizScore', this.score);
   },
 
+  /**
+   * Advances to the next question with an exit animation.
+   */
   nextQuestion() {
     this.currentIndex++;
     const container = document.getElementById('quiz-question');
@@ -167,6 +180,9 @@ const QuizView = {
     }
   },
 
+  /**
+   * Updates the SVG score ring progress indicator and count-up animation.
+   */
   updateScoreRing() {
     const valueEl = document.getElementById('quiz-score-value');
     const progressEl = document.getElementById('quiz-score-progress');
@@ -182,6 +198,9 @@ const QuizView = {
     }
   },
 
+  /**
+   * Renders the end-of-quiz results screen with final score and share actions.
+   */
   showEndScreen() {
     const container = document.getElementById('quiz-question');
     if (!container) return;
@@ -203,11 +222,17 @@ const QuizView = {
     `;
   },
 
+  /**
+   * Resets quiz state and reinitializes for a new round.
+   */
   restart() {
     this.initialized = false;
     this.init();
   },
 
+  /**
+   * Shares the quiz score via the Web Share API or clipboard fallback.
+   */
   share() {
     const text = `I scored ${this.score}/${this.totalQuestions * 10} on the Mera Chunaav Civic Quiz! Test your election knowledge: `;
     if (navigator.share) {

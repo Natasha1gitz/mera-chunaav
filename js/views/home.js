@@ -1,6 +1,13 @@
+/**
+ * @fileoverview Homepage scroll animation controller for Mera Chunaav.
+ * Manages a two-phase canvas animation sequence driven by scroll position.
+ * Phase 1: Person silhouette → Inked finger. Phase 2: Inked finger → India map.
+ * Images are loaded from Firebase Storage CDN for optimal performance.
+ * @module views/home
+ */
+
 // ============================================
-// Mera Chunaav — Homepage Scroll Animation
-// Two-phase transformation scroll:
+// Mera Chunaav — Home (Scroll Animation) View
 //   Phase 1: Person silhouette → Inked finger
 //   Phase 2: Inked finger → India map
 // ============================================

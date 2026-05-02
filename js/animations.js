@@ -1,3 +1,10 @@
+/**
+ * @fileoverview Animation utilities for Mera Chunaav including scroll-reveal
+ * observers, count-up counters, confetti explosions, sparkline SVG generation,
+ * shimmer sweeps, and typewriter text effects.
+ * @module animations
+ */
+
 // ============================================
 // Mera Chunaav — Animations Module
 // IntersectionObserver, Counters, Confetti

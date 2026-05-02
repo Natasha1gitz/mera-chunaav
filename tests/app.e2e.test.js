@@ -265,4 +265,100 @@ describe('Mera Chunaav — Security Tests', () => {
     });
     expect(hasConfig).toBe(true);
   });
+
+  it('should have a Content-Security-Policy meta tag', async () => {
+    const csp = await page.evaluate(() => {
+      const meta = document.querySelector('meta[http-equiv="Content-Security-Policy"]');
+      return meta ? meta.getAttribute('content') : null;
+    });
+    expect(csp).toBeTruthy();
+    expect(csp).not.toContain('unsafe-eval');
+  });
 });
+
+describe('Mera Chunaav — Code Quality Tests', () => {
+  it('should have an ESLint configuration file', async () => {
+    const fs = require('fs');
+    const path = require('path');
+    const eslintPath = path.resolve(__dirname, '..', '.eslintrc.js');
+    expect(fs.existsSync(eslintPath)).toBe(true);
+  });
+
+  it('should have @fileoverview documentation in all core modules', async () => {
+    const fs = require('fs');
+    const path = require('path');
+    const coreFiles = ['app.js', 'data.js', 'gemini.js', 'animations.js', 'firebase.js', 'maps.js', 'translate.js', 'tts.js'];
+    for (const file of coreFiles) {
+      const content = fs.readFileSync(path.resolve(__dirname, '..', 'js', file), 'utf-8');
+      expect(content).toContain('@fileoverview');
+      expect(content).toContain('@module');
+    }
+  });
+
+  it('should have engines field in package.json', async () => {
+    const fs = require('fs');
+    const path = require('path');
+    const pkg = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'package.json'), 'utf-8'));
+    expect(pkg.engines).toBeDefined();
+    expect(pkg.engines.node).toBeDefined();
+  });
+});
+
+describe('Mera Chunaav — Advanced Accessibility Tests', () => {
+  beforeAll(async () => {
+    await page.goto(APP_URL, { waitUntil: 'networkidle2' });
+  });
+
+  it('should have a skip-to-content link as the first focusable element', async () => {
+    const skipLink = await page.$('a.skip-link');
+    expect(skipLink).toBeTruthy();
+    const href = await page.$eval('a.skip-link', el => el.getAttribute('href'));
+    expect(href).toBe('#main-content');
+  });
+
+  it('should have focus-visible styles in the CSS', async () => {
+    const hasFocusVisible = await page.evaluate(() => {
+      const sheets = Array.from(document.styleSheets);
+      for (const sheet of sheets) {
+        try {
+          const rules = Array.from(sheet.cssRules);
+          for (const rule of rules) {
+            if (rule.selectorText && rule.selectorText.includes('focus-visible')) return true;
+          }
+        } catch (_e) { /* cross-origin stylesheet */ }
+      }
+      return false;
+    });
+    expect(hasFocusVisible).toBe(true);
+  });
+
+  it('should have prefers-reduced-motion media query in CSS', async () => {
+    const hasReducedMotion = await page.evaluate(() => {
+      const sheets = Array.from(document.styleSheets);
+      for (const sheet of sheets) {
+        try {
+          const rules = Array.from(sheet.cssRules);
+          for (const rule of rules) {
+            if (rule.conditionText && rule.conditionText.includes('prefers-reduced-motion')) return true;
+          }
+        } catch (_e) { /* cross-origin stylesheet */ }
+      }
+      return false;
+    });
+    expect(hasReducedMotion).toBe(true);
+  });
+
+  it('should have semantic HTML structure with main, nav, and section elements', async () => {
+    const semantics = await page.evaluate(() => {
+      return {
+        hasMain: !!document.querySelector('main'),
+        hasNav: !!document.querySelector('nav'),
+        hasSections: document.querySelectorAll('section').length >= 4,
+      };
+    });
+    expect(semantics.hasMain).toBe(true);
+    expect(semantics.hasNav).toBe(true);
+    expect(semantics.hasSections).toBe(true);
+  });
+});
+

@@ -1,5 +1,12 @@
+/**
+ * @fileoverview Onboarding controller for the inline pincode entry flow.
+ * Handles numeric-only input validation, constituency lookup via DataModule,
+ * constituency reveal animation, and dashboard entry navigation.
+ * @module views/onboarding
+ */
+
 // ============================================
-// Mera Chunaav — Onboarding (Inline Pincode)
+// Mera Chunaav — Onboarding (Pincode Entry)
 // Pincode entry lives inside the homepage now
 // ============================================
 
@@ -10,11 +17,17 @@
  * @namespace OnboardingView
  */
 const OnboardingView = {
+  /**
+   * Initializes the onboarding by setting up pincode input and dashboard entry.
+   */
   init() {
     this.setupPincodeInput();
     this.setupDashboardEntry();
   },
 
+  /**
+   * Sets up numeric-only input validation and auto-submission on 6 digits.
+   */
   setupPincodeInput() {
     const input = document.getElementById('pincode-input');
     if (!input) return;
@@ -58,6 +71,10 @@ const OnboardingView = {
     this.showReveal(constituency);
   },
 
+  /**
+   * Animates the constituency reveal card with voter stats and a count-up effect.
+   * @param {Object} constituency - The constituency data object to display.
+   */
   showReveal(constituency) {
     const pincodeStep = document.getElementById('pincode-step');
     const reveal = document.getElementById('home-reveal');
@@ -90,6 +107,9 @@ const OnboardingView = {
     }, 350);
   },
 
+  /**
+   * Sets up the "Explore Dashboard" button click handler.
+   */
   setupDashboardEntry() {
     const enterBtn = document.getElementById('enter-dashboard-btn');
     if (!enterBtn) return;

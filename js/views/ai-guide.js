@@ -1,3 +1,10 @@
+/**
+ * @fileoverview AI Guide view controller for the Gemini-powered chat interface.
+ * Manages persona-aware quick topics, streaming chat responses, voice input
+ * via Web Speech API, TTS read-aloud, and graceful offline fallback.
+ * @module views/ai-guide
+ */
+
 // ============================================
 // Mera Chunaav — AI Guide View
 // Persona-aware quick topics, streaming Gemini chat,
@@ -69,6 +76,9 @@ const AiGuideView = {
     ]
   },
 
+  /**
+   * Initializes the AI Guide view by rendering topics and setting up input handlers.
+   */
   init() {
     if (this.initialized) return;
     this.renderTopics();
@@ -76,6 +86,9 @@ const AiGuideView = {
     this.initialized = true;
   },
 
+  /**
+   * Renders persona-aware quick topic chips in the sidebar.
+   */
   renderTopics() {
     const container = document.getElementById('ai-topics');
     if (!container) return;
@@ -101,6 +114,9 @@ const AiGuideView = {
     });
   },
 
+  /**
+   * Sets up the chat input field, send button, and microphone button event listeners.
+   */
   setupInput() {
     const input = document.getElementById('chat-input');
     const sendBtn = document.getElementById('chat-send');
@@ -160,7 +176,8 @@ const AiGuideView = {
       } else {
         await this.demoResponse(text);
       }
-    } catch {
+    } catch (err) {
+      console.warn('AI chat error, falling back to demo:', err.message);
       this.hideTyping();
       if (this.currentAiBubble) {
         this.currentAiBubble.remove();
@@ -169,7 +186,8 @@ const AiGuideView = {
       // Graceful fallback to demo response
       try {
         await this.demoResponse(text);
-      } catch {
+      } catch (fallbackErr) {
+        console.warn('Demo fallback also failed:', fallbackErr.message);
         this.addMessage('Sorry, the AI service is currently unavailable. Please try again later.', 'ai');
       }
     } finally {
@@ -222,6 +240,10 @@ const AiGuideView = {
     return bubble;
   },
 
+  /**
+   * Handles a streaming token from the Gemini API, appending it to the current AI bubble.
+   * @param {string} token - A partial text token from the SSE stream.
+   */
   onStreamToken(token) {
     this.hideTyping();
     if (!this.currentAiBubble) {
@@ -232,6 +254,9 @@ const AiGuideView = {
     if (area) area.scrollTop = area.scrollHeight;
   },
 
+  /**
+   * Finalizes the streamed response by rendering markdown formatting and saving to history.
+   */
   onStreamEnd() {
     if (!this.currentAiBubble) return;
     const textContainer = this.currentAiBubble.querySelector('.chat-bubble__text');
@@ -248,6 +273,9 @@ const AiGuideView = {
     this.currentAiBubble = null;
   },
 
+  /**
+   * Shows a typing indicator animation in the chat area.
+   */
   showTyping() {
     const area = document.getElementById('chat-messages');
     if (!area || area.querySelector('.typing-indicator')) return;
@@ -258,10 +286,19 @@ const AiGuideView = {
     area.scrollTop = area.scrollHeight;
   },
 
+  /**
+   * Removes the typing indicator from the chat area.
+   */
   hideTyping() {
     document.querySelector('.typing-indicator')?.remove();
   },
 
+  /**
+   * Generates a demo response when the Gemini API is unavailable.
+   * Simulates streaming by typing characters one at a time.
+   * @param {string} question - The user's original question.
+   * @returns {Promise<void>}
+   */
   async demoResponse(question) {
     const c = AppState.constituency;
     const response = `Based on data from ${c?.name || 'your constituency'} in ${c?.state || 'your state'}, let me help you with that.\n\nThe constituency has ${c ? formatIndianNumber(c.electors.total) : 'many'} registered voters with a turnout of ${c?.turnout['2024'] || '58'}% in the 2024 general elections.\n\nIs there anything specific about the election process you'd like to know?`;
@@ -279,6 +316,10 @@ const AiGuideView = {
     this.onStreamEnd();
   },
 
+  /**
+   * Starts voice input using the Web Speech API (webkit).
+   * Sets the recognized transcript as the chat input value.
+   */
   startVoiceInput() {
     const recognition = new webkitSpeechRecognition();
     recognition.lang = AppState.language === 'hi' ? 'hi-IN' : 'en-IN';

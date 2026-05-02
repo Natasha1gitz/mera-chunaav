@@ -1,6 +1,12 @@
+/**
+ * @fileoverview Cloud Translation module for dynamic UI localization.
+ * Uses the Google Translate API v2 to translate key UI elements and
+ * caches results in memory and sessionStorage to avoid repeat API calls.
+ * @module translate
+ */
+
 // ============================================
-// Mera Chunaav — Cloud Translation Module
-// Translates key UI elements using Google Translate API.
+// Mera Chunaav — Cloud Translate Module
 // Caches results in memory and sessionStorage to avoid repeat calls.
 // ============================================
 

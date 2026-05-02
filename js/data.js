@@ -1,3 +1,10 @@
+/**
+ * @fileoverview Constituency data loading, transformation, and pincode-based lookup.
+ * Supports loading from user-provided Dataset.json with graceful fallback to
+ * built-in sample constituencies (Lucknow, Mumbai North, New Delhi).
+ * @module data
+ */
+
 // ============================================
 // Mera Chunaav — Data Module
 // Constituency data + lookup functions
@@ -177,12 +184,21 @@ const DataModule = {
     return [...results, ...DataModule.FALLBACK];
   },
 
+  /**
+   * Generates a random Indian name using first and last name pools.
+   * @returns {string} A two-part name string.
+   */
   generateName() {
     const first = ['Ramesh', 'Suresh', 'Priya', 'Anita', 'Vikram', 'Sunita', 'Manoj', 'Deepak', 'Kavita', 'Rajendra', 'Meena', 'Ashok', 'Pooja', 'Sanjay', 'Neha'];
     const last = ['Kumar', 'Singh', 'Sharma', 'Verma', 'Gupta', 'Yadav', 'Patel', 'Joshi', 'Mishra', 'Chauhan', 'Rajput', 'Devi', 'Agarwal'];
     return first[Math.floor(Math.random() * first.length)] + ' ' + last[Math.floor(Math.random() * last.length)];
   },
 
+  /**
+   * Generates the standard 7-phase election timeline for a constituency.
+   * @param {number} phaseNum - The election phase number for date calculation.
+   * @returns {Array<Object>} Array of phase milestone objects.
+   */
   generatePhases(phaseNum) {
     return [
       { id: 1, label: 'Notification', title: 'Issue of Notification', days: 1, desc: 'Election Commission issues official notification for the constituency.', status: 'completed', date: '2024-03-16' },
@@ -211,6 +227,11 @@ const DataModule = {
     ) || this.constituencies[0]; // fallback to first
   },
 
+  /**
+   * Retrieves a constituency by its exact name.
+   * @param {string} name - The constituency name to search for.
+   * @returns {Object|undefined} The matching constituency or undefined.
+   */
   getConstituency(name) {
     return this.constituencies.find(c => c.name === name);
   },

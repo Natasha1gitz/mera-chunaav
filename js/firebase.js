@@ -1,3 +1,10 @@
+/**
+ * @fileoverview Firebase integration module for anonymous authentication,
+ * Firestore constituency lookups, and quiz score persistence.
+ * Falls back to offline mode when Firebase SDK is unavailable.
+ * @module firebase
+ */
+
 // ============================================
 // Mera Chunaav — Firebase Module
 // ============================================

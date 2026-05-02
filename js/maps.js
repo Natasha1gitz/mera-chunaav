@@ -1,7 +1,13 @@
+/**
+ * @fileoverview Google Maps JavaScript SDK integration for rendering
+ * interactive polling booth maps with custom dark styling.
+ * Dynamically loads the SDK via script injection with a global callback.
+ * @module maps
+ */
+
 // ============================================
-// Mera Chunaav — Google Maps Module
-// Dynamically loads the Maps SDK using the API key from config.js.
-// Uses a global callback (__initMap) so the Promise resolves only
+// Mera Chunaav — Maps Module
+// Uses dynamic SDK loading with a global __initMap callback
 // after the API is fully ready.
 // ============================================
 

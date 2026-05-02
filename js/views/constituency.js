@@ -1,3 +1,10 @@
+/**
+ * @fileoverview Constituency Intelligence view controller.
+ * Renders voter metrics, interactive turnout bar charts, candidate flip-cards,
+ * and the Google Maps polling booth locator.
+ * @module views/constituency
+ */
+
 // ============================================
 // Mera Chunaav — Constituency Intelligence View
 // ============================================
