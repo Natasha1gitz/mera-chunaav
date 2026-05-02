@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mera-chunaav-451741521075.asia-south1.run.app/sitemap.xml

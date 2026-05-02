@@ -6,6 +6,19 @@
   <meta name="description" content="Mera Chunaav — Your personalized election education assistant. Discover your constituency, candidates, and civic rights.">
   <meta name="theme-color" content="#fcf9f4">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://*.googleapis.com https://*.gstatic.com https://*.firebaseapp.com https://*.firebasestorage.app wss://*.firebaseio.com blob: data:;">
+  
+  <!-- Open Graph / Social SEO -->
+  <meta property="og:title" content="Mera Chunaav — Your Vote, Your Story">
+  <meta property="og:description" content="AI-powered civic education platform for Indian elections.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mera Chunaav">
+  <meta name="twitter:description" content="Discover your constituency, candidates, and democratic rights.">
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🗳️</text></svg>">
+
   <title>Mera Chunaav — Your Vote, Your Story</title>
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
@@ -19,6 +32,11 @@
   <link rel="stylesheet" href="css/views/quiz.css">
 </head>
 <body>
+  <noscript>
+    <div style="padding: 20px; background: #FF6B00; color: white; text-align: center; font-family: sans-serif;">
+      <strong>JavaScript is required.</strong> Please enable JavaScript to access Mera Chunaav's interactive features.
+    </div>
+  </noscript>
   <a href="#main-content" class="skip-link">Skip to main content</a>
   <div class="app">
 
